@@ -1,0 +1,1818 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMET · Procesos en orden, mentes en paz</title>
+    <meta name="description" content="Sistemas, catálogos web y automatizaciones que devuelven la serenidad a los dueños de negocio. Tecnología con sentido humano y honestidad radical.">
+    
+    <!-- Always start at the very top on reload/load -->
+    <script>
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+    </script>
+
+    <!-- Google Fonts: Editorial Serif + Modern Clean Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Instrument Serif"', 'serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        canvas: '#FAF7F2',       /* Warm Sandstone Linen */
+                        canvasSubtle: '#F3EDE2', /* Soft Oatmeal */
+                        ink: '#121824',          /* Midnight Ink */
+                        inkMuted: '#576275',     /* Soft Charcoal */
+                        gold: '#C29B53',         /* Official EMET Gold */
+                        goldDark: '#9E7A34',     /* Deep Antique Gold */
+                        goldLight: '#EBD8B2',    /* Whispering Gold */
+                        line: 'rgba(18, 24, 36, 0.08)',
+                        lineStrong: 'rgba(18, 24, 36, 0.16)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FAF7F2;
+            color: #121824;
+        }
+        /* Custom gentle selection */
+        ::selection {
+            background-color: #C29B53;
+            color: #FAF7F2;
+        }
+        /* Subtle editorial noise effect */
+        .editorial-grain {
+            background-image: radial-gradient(rgba(18, 24, 36, 0.03) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+        /* Seamless video feathering mask for audit section (Zero harsh seams) */
+        @media (min-width: 1024px) {
+            .audit-video-mask {
+                -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 22%, rgba(0,0,0,0.06) 32%, rgba(0,0,0,0.28) 42%, rgba(0,0,0,0.68) 54%, black 68%, black 100%);
+                mask-image: linear-gradient(to right, transparent 0%, transparent 22%, rgba(0,0,0,0.06) 32%, rgba(0,0,0,0.28) 42%, rgba(0,0,0,0.68) 54%, black 68%, black 100%);
+            }
+        }
+        @media (max-width: 1023px) {
+            .audit-video-mask {
+                opacity: 0.35;
+            }
+        }
+        /* Smooth Executive Scroll-Reveal System */
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .stagger-1 { transition-delay: 0.06s; }
+        .stagger-2 { transition-delay: 0.14s; }
+        .stagger-3 { transition-delay: 0.22s; }
+        .stagger-4 { transition-delay: 0.30s; }
+
+        /* Scrollytelling Statements Cross-Fade Engine (Slow, Silky-Smooth Transitions) */
+        .statement-slide {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+            pointer-events: none;
+        }
+        .statement-slide.active {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.16s;
+        }
+        .statement-slide.passed {
+            opacity: 0;
+            transform: translateY(-24px);
+            transition-delay: 0s;
+        }
+        .statement-slide.upcoming {
+            opacity: 0;
+            transform: translateY(28px);
+            transition-delay: 0s;
+        }
+
+        /* Custom Executive Range Sliders (EMET Diagnostic Tool) */
+        .emet-range {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 7px;
+            background: #E8E2D9;
+            border-radius: 9999px;
+            outline: none;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        .emet-range:focus-visible {
+            box-shadow: 0 0 0 3px rgba(194, 155, 83, 0.35);
+        }
+        .emet-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #121824;
+            border: 2.5px solid #C29B53;
+            box-shadow: 0 4px 10px rgba(18, 24, 36, 0.25);
+            cursor: pointer;
+            transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), background 0.15s ease;
+        }
+        .emet-range::-webkit-slider-thumb:hover {
+            transform: scale(1.18);
+            background: #1a2234;
+        }
+        .emet-range::-webkit-slider-thumb:active {
+            transform: scale(1.08);
+            background: #C29B53;
+        }
+        .emet-range::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #121824;
+            border: 2.5px solid #C29B53;
+            box-shadow: 0 4px 10px rgba(18, 24, 36, 0.25);
+            cursor: pointer;
+            transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), background 0.15s ease;
+        }
+        .emet-range::-moz-range-thumb:hover {
+            transform: scale(1.18);
+            background: #1a2234;
+        }
+        .emet-range::-moz-range-thumb:active {
+            transform: scale(1.08);
+            background: #C29B53;
+        }
+        .emet-range::-moz-range-track {
+            background: #E8E2D9;
+            height: 7px;
+            border-radius: 9999px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased editorial-grain selection:bg-gold selection:text-white">
+
+    <!-- Top Quiet Announcement Bar -->
+    <div class="border-b border-line bg-canvasSubtle/60 text-xs py-2 px-6 text-center text-inkMuted flex items-center justify-center gap-2">
+        <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
+        <span class="font-medium tracking-wide">La verdad demostrada en los hechos: automatización y sistemas con sentido humano.</span>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-canvas/90 backdrop-blur-md border-b border-line transition-all">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Brand -->
+            <a href="#" class="flex items-center gap-3 group">
+                <img src="logo_emet_transparente.png" alt="EMET" class="h-12 sm:h-14 w-auto object-contain transition-transform group-hover:scale-105">
+                <div class="hidden lg:flex flex-col border-l border-lineStrong/50 pl-3">
+                    <span class="text-[9px] font-mono tracking-widest font-bold uppercase text-goldDark leading-tight">Procesos en orden,</span>
+                    <span class="text-[9px] font-mono tracking-widest font-bold uppercase text-inkMuted leading-tight">mentes en paz</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center gap-7 lg:gap-8 text-sm font-medium text-inkMuted">
+                <a href="#manifiesto" class="hover:text-ink transition-colors">La Filosofía</a>
+                <a href="#soluciones" class="hover:text-ink transition-colors">Los 4 Sistemas</a>
+                <a href="#a-medida" class="hover:text-ink transition-colors">A Medida</a>
+                <a href="#experiencia-paz" class="hover:text-ink transition-colors flex items-center gap-1.5 font-semibold text-ink">
+                    <span>La Perspectiva</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
+                </a>
+                <a href="#simulador" class="hover:text-ink transition-colors">Simulador</a>
+                <a href="#casos" class="hover:text-ink transition-colors">Casos Reales</a>
+            </nav>
+
+            <!-- Quiet Action Button & Mobile Hamburger Toggle -->
+            <div class="flex items-center gap-3">
+                <a href="https://wa.me/584242544045?text=Hola%20Joaquin,%20estoy%20en%20la%20web%20de%20EMET%20y%20quiero%20conversar%20sobre%20los%20procesos%20de%20mi%20negocio." 
+                   target="_blank"
+                   class="hidden sm:flex px-4 sm:px-5 py-2.5 rounded-xl bg-ink text-canvas hover:bg-goldDark font-semibold text-xs transition-all duration-200 items-center gap-2 shadow-sm">
+                    <i data-lucide="coffee" class="w-3.5 h-3.5 text-gold"></i>
+                    <span>Conversar 15 min</span>
+                </a>
+
+                <!-- Mobile Hamburger Button -->
+                <button id="mobile-menu-btn"
+                        type="button"
+                        aria-label="Abrir menú de navegación"
+                        class="md:hidden p-2.5 rounded-xl border border-line bg-canvasSubtle/90 hover:bg-line text-ink flex items-center justify-center transition-all duration-200 active:scale-95">
+                    <i data-lucide="menu" id="menu-icon-open" class="w-5 h-5 text-ink"></i>
+                    <i data-lucide="x" id="menu-icon-close" class="w-5 h-5 text-ink hidden"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-menu-drawer" 
+             class="hidden md:hidden border-t border-line bg-canvas/98 backdrop-blur-2xl px-6 py-6 transition-all duration-300 shadow-2xl">
+            <nav class="flex flex-col space-y-2 text-sm font-semibold text-ink">
+                <a href="#manifiesto" class="mobile-nav-link py-2.5 px-3 rounded-xl hover:bg-canvasSubtle flex items-center justify-between text-inkMuted hover:text-ink transition-colors">
+                    <span>La Filosofía</span>
+                    <i data-lucide="chevron-right" class="w-4 h-4 text-inkMuted/40"></i>
+                </a>
+                <a href="#soluciones" class="mobile-nav-link py-2.5 px-3 rounded-xl hover:bg-canvasSubtle flex items-center justify-between text-inkMuted hover:text-ink transition-colors">
+                    <span>Los 4 Sistemas</span>
+                    <i data-lucide="chevron-right" class="w-4 h-4 text-inkMuted/40"></i>
+                </a>
+                <a href="#a-medida" class="mobile-nav-link py-2.5 px-3 rounded-xl hover:bg-canvasSubtle flex items-center justify-between text-inkMuted hover:text-ink transition-colors">
+                    <span>A Medida</span>
+                    <i data-lucide="chevron-right" class="w-4 h-4 text-inkMuted/40"></i>
+                </a>
+                <a href="#experiencia-paz" class="mobile-nav-link py-2.5 px-3 rounded-xl hover:bg-canvasSubtle flex items-center justify-between text-ink font-bold transition-colors">
+                    <span class="flex items-center gap-2">
+                        <span>La Perspectiva</span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
+                    </span>
+                    <i data-lucide="chevron-right" class="w-4 h-4 text-inkMuted/40"></i>
+                </a>
+                <a href="#simulador" class="mobile-nav-link py-2.5 px-3 rounded-xl hover:bg-canvasSubtle flex items-center justify-between text-inkMuted hover:text-ink transition-colors">
+                    <span>Calculadora de Fugas</span>
+                    <i data-lucide="chevron-right" class="w-4 h-4 text-inkMuted/40"></i>
+                </a>
+                <a href="#casos" class="mobile-nav-link py-2.5 px-3 rounded-xl hover:bg-canvasSubtle flex items-center justify-between text-inkMuted hover:text-ink transition-colors">
+                    <span>Casos Reales</span>
+                    <i data-lucide="chevron-right" class="w-4 h-4 text-inkMuted/40"></i>
+                </a>
+                <a href="#proceso" class="mobile-nav-link py-2.5 px-3 rounded-xl hover:bg-canvasSubtle flex items-center justify-between text-inkMuted hover:text-ink transition-colors">
+                    <span>El Proceso EMET</span>
+                    <i data-lucide="chevron-right" class="w-4 h-4 text-inkMuted/40"></i>
+                </a>
+                <a href="#faq" class="mobile-nav-link py-2.5 px-3 rounded-xl hover:bg-canvasSubtle flex items-center justify-between text-inkMuted hover:text-ink transition-colors">
+                    <span>Preguntas Frecuentes</span>
+                    <i data-lucide="chevron-right" class="w-4 h-4 text-inkMuted/40"></i>
+                </a>
+
+                <!-- Mobile Action CTA -->
+                <div class="pt-4 border-t border-line space-y-2">
+                    <a href="https://wa.me/584242544045?text=Hola%20Joaquin,%20estoy%20en%20la%20web%20de%20EMET%20y%20quiero%20conversar%20sobre%20los%20procesos%20de%20mi%20negocio." 
+                       target="_blank"
+                       class="w-full py-3.5 px-5 rounded-xl bg-ink text-canvas hover:bg-goldDark font-bold text-xs transition-all duration-200 flex items-center justify-center gap-2 shadow-lg">
+                        <i data-lucide="coffee" class="w-4 h-4 text-gold"></i>
+                        <span>Conversar 15 min en WhatsApp</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 text-gold"></i>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section: Full-Bleed Video Background with Foreground Editorial Content -->
+    <section class="relative min-h-[90vh] lg:min-h-screen flex items-center overflow-hidden bg-canvas">
+        
+        <!-- Full-Bleed Video Background Container -->
+        <div class="absolute inset-0 w-full h-full overflow-hidden">
+            <video autoplay loop muted playsinline poster="emet_video_poster.jpg" class="w-full h-full object-cover object-[center_center] lg:object-[68%_center] filter brightness-[0.98] contrast-[1.02]">
+                <source src="emet_video_hero.webm" type="video/webm">
+                <source src="emet_video_hero.mp4" type="video/mp4">
+                Tu navegador no soporta video HTML5.
+            </video>
+
+            <!-- Directional Editorial Gradient Scrim: Crisp contrast on the left for text, completely clear on the center/right for the character -->
+            <div class="absolute inset-0 bg-gradient-to-r from-canvas/95 via-canvas/85 via-45% to-canvas/10 pointer-events-none"></div>
+            <!-- Bottom Seamless Fade to Manifesto Section -->
+            <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-canvas to-transparent pointer-events-none"></div>
+            <!-- Top Subtle Header Soft Vignette -->
+            <div class="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-canvas/80 to-transparent pointer-events-none"></div>
+        </div>
+
+        <!-- Foreground Content: Slogan, Headline & Action in Front of Video -->
+        <div class="relative z-10 max-w-6xl mx-auto px-6 py-20 lg:py-28 w-full">
+            <div class="max-w-2xl space-y-7 text-left">
+                
+
+                <!-- Main Headline -->
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-ink tracking-tight leading-[1.08]">
+                    Tu negocio fue creado para darte vida.
+                    <span class="font-serif italic font-normal text-goldDark block mt-2.5">No para robarte la paz mental.</span>
+                </h1>
+
+                <!-- Subheadline / Value Proposition -->
+                <p class="text-base sm:text-lg text-inkMuted leading-relaxed font-normal max-w-xl">
+                    Eliminamos el desorden operativo que te tiene atrapado. Diseñamos <strong>catálogos web de venta directa</strong>, <strong>asistentes automáticos en WhatsApp</strong> y <strong>sistemas a medida</strong> que trabajan en silencio para que tú recuperes tu tiempo.
+                </p>
+
+                <!-- Action CTAs -->
+                <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
+                    <a href="https://wa.me/584242544045?text=Hola%20Joaquin,%20quiero%20agendar%20la%20Auditoria%20Operativa%20de%2015%20minutos%20para%20EMET." 
+                       target="_blank"
+                       class="px-8 py-4 rounded-xl bg-ink text-canvas hover:bg-goldDark font-bold text-sm transition-all duration-300 shadow-xl flex items-center justify-center gap-3 group">
+                        <span>Agendar Auditoría de Fugas (15 min)</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 text-gold group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+
+                    <a href="#simulador" 
+                       class="px-6 py-4 rounded-xl backdrop-blur-md bg-white/90 border border-line hover:border-lineStrong text-ink font-semibold text-sm transition-all flex items-center justify-center gap-2 shadow-sm">
+                        <i data-lucide="calculator" class="w-4 h-4 text-goldDark"></i>
+                        <span>Calcular fugas de tiempo</span>
+                    </a>
+                </div>
+
+                <!-- The Two Links Explanation Badge -->
+                <div class="pt-4 border-t border-lineStrong/50 flex items-center gap-4 text-xs text-inkMuted max-w-xl backdrop-blur-sm bg-canvas/40 p-3.5 rounded-2xl border border-line">
+                    <img src="logo_emet_transparente.png" alt="Isotipo EMET" class="h-9 w-auto object-contain shrink-0">
+                    <p class="leading-relaxed">
+                        <strong class="text-ink font-semibold">El Isotipo de los Dos Eslabones:</strong> Tu calor humano unido a la solidez de nuestros sistemas. La tecnología en silencio; tu mente en paz.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- The EMET Manifesto: Philosophy & Contrast -->
+    <section id="manifiesto" class="py-28 lg:py-32">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+                
+                <div class="md:col-span-5 space-y-4 reveal">
+                    <span class="text-xs font-mono font-bold tracking-wider uppercase text-goldDark">NUESTRA DECLARACIÓN</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-ink tracking-tight leading-tight">
+                        Por qué odiamos los cursos de IA y el humo digital.
+                    </h2>
+                    <p class="text-sm text-inkMuted leading-relaxed">
+                        Internet está lleno de gurús vendiendo cursos teóricos que nadie termina y programadores cobrando miles de dólares por páginas web que nunca generan una sola venta.
+                    </p>
+                    <p class="text-sm text-inkMuted leading-relaxed">
+                        En <strong>EMET</strong> trabajamos bajo una regla inquebrantable: <em>la verdad en los hechos</em>. Si una herramienta gratuita resuelve tu problema, te lo decimos; y si construimos un sistema, lo dejamos funcionando con tus clientes reales.
+                    </p>
+                </div>
+
+                <div class="md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Contrast Card 1 -->
+                    <div class="p-6 rounded-2xl bg-white border border-line space-y-3 reveal stagger-1">
+                        <div class="w-8 h-8 rounded-lg bg-rose-50 border border-rose-100 flex items-center justify-center text-rose-500 font-bold text-xs">
+                            ✕
+                        </div>
+                        <h4 class="font-bold text-ink text-sm">El Caos Cotidiano</h4>
+                        <p class="text-xs text-inkMuted leading-relaxed">
+                            Mandar PDFs pesados de 40 MB por WhatsApp, sacar cuentas en una libreta manchada de café y responder precios a las 11 de la noche mientras tu familia te espera.
+                        </p>
+                    </div>
+
+                    <!-- Contrast Card 2 -->
+                    <div class="p-6 rounded-2xl bg-white border border-line space-y-3 reveal stagger-2">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 font-bold text-xs">
+                            ✓
+                        </div>
+                        <h4 class="font-bold text-ink text-sm">El Orden EMET</h4>
+                        <p class="text-xs text-inkMuted leading-relaxed">
+                            Un catálogo web ultra rápido donde el cliente elige moneda (USD/VES), selecciona productos y te manda el pedido listo a tu WhatsApp para solo cobrar.
+                        </p>
+                    </div>
+
+                    <!-- Contrast Card 3 -->
+                    <div class="p-6 rounded-2xl bg-white border border-line space-y-3 reveal stagger-3">
+                        <div class="w-8 h-8 rounded-lg bg-rose-50 border border-rose-100 flex items-center justify-center text-rose-500 font-bold text-xs">
+                            ✕
+                        </div>
+                        <h4 class="font-bold text-ink text-sm">La Web Olvidada</h4>
+                        <p class="text-xs text-inkMuted leading-relaxed">
+                            Una página en WordPress con "Misión y Visión" que costó $400, nadie visita, y cuyos precios no se pueden actualizar por la tasa del día.
+                        </p>
+                    </div>
+
+                    <!-- Contrast Card 4 -->
+                    <div class="p-6 rounded-2xl bg-white border border-line space-y-3 reveal stagger-4">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 font-bold text-xs">
+                            ✓
+                        </div>
+                        <h4 class="font-bold text-ink text-sm">Panel en tu Teléfono</h4>
+                        <p class="text-xs text-inkMuted leading-relaxed">
+                            Abres la aplicación en tu celular, cambias un precio en 10 segundos y todo tu catálogo web e inventario quedan sincronizados automáticamente.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- The 4 Core Systems: Clean, Editorial Architecture -->
+    <section id="soluciones" class="py-28 lg:py-32">
+        <div class="max-w-6xl mx-auto px-6 space-y-16">
+            
+            <div class="max-w-2xl space-y-3 reveal">
+                <span class="text-xs font-mono font-bold tracking-wider uppercase text-goldDark">NUESTROS CUATRO SISTEMAS</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-ink tracking-tight">
+                    Ingeniería precisa para resolver cuellos de botella y generar ingresos.
+                </h2>
+                <p class="text-sm sm:text-base text-inkMuted leading-relaxed">
+                    No te cobramos por "código"; te cobramos por quitarte de encima tareas manuales que te están costando clientes y por construir herramientas interactivas que monetizan tu trabajo.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- System 1 -->
+                <div class="bg-white rounded-2xl p-8 border border-line hover:border-lineStrong transition-all space-y-6 flex flex-col justify-between shadow-sm reveal stagger-1">
+                    <div class="space-y-4">
+                        <div class="text-xs font-mono font-bold text-goldDark">SISTEMA 01</div>
+                        <h3 class="text-xl font-bold text-ink">Catálogos & Webs de Venta Directa</h3>
+                        <p class="text-xs sm:text-sm text-inkMuted leading-relaxed">
+                            Reemplazamos los catálogos en PDF y las webs obsoletas por plataformas interactivas que cargan en 1 segundo y le arman el pedido masticado a tu vendedor por WhatsApp.
+                        </p>
+                        <div class="pt-2 space-y-2 text-xs text-ink">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-goldDark"></i>
+                                <span>Selector dinámico USD ($) y VES (Bs)</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-goldDark"></i>
+                                <span>Panel de control fácil desde tu celular</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-goldDark"></i>
+                                <span>Inventario en tiempo real en la nube</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-6 border-t border-line text-xs font-medium text-inkMuted">
+                        Ideal para: Comercios, distribuidoras y tiendas físicas o digitales.
+                    </div>
+                </div>
+
+                <!-- System 2 -->
+                <div class="bg-white rounded-2xl p-8 border border-line hover:border-lineStrong transition-all space-y-6 flex flex-col justify-between shadow-sm reveal stagger-2">
+                    <div class="space-y-4">
+                        <div class="text-xs font-mono font-bold text-goldDark">SISTEMA 02</div>
+                        <h3 class="text-xl font-bold text-ink">Bots & Automatización Operativa</h3>
+                        <p class="text-xs sm:text-sm text-inkMuted leading-relaxed">
+                            Flujos inteligentes en n8n conectados a WhatsApp. Procesan audios de gastos, registran ventas automáticamente y responden dudas frecuentes sin pagar sueldos fantasmas.
+                        </p>
+                        <div class="pt-2 space-y-2 text-xs text-ink">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-goldDark"></i>
+                                <span>Extracción de datos desde notas de voz</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-goldDark"></i>
+                                <span>Respuestas instantáneas las 24 horas</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-goldDark"></i>
+                                <span>Conexión directa a Google Sheets o bases de datos</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-6 border-t border-line text-xs font-medium text-inkMuted">
+                        Ideal para: Emprendedores ocupados y empresas con alto flujo de consultas.
+                    </div>
+                </div>
+
+                <!-- System 3 -->
+                <div class="bg-white rounded-2xl p-8 border border-line hover:border-lineStrong transition-all space-y-6 flex flex-col justify-between shadow-sm reveal stagger-3">
+                    <div class="space-y-4">
+                        <div class="text-xs font-mono font-bold text-goldDark">SISTEMA 03</div>
+                        <h3 class="text-xl font-bold text-ink">Cotizadores Rápidos & CRMs Privados</h3>
+                        <p class="text-xs sm:text-sm text-inkMuted leading-relaxed">
+                            Herramientas a la medida de tu equipo: genera presupuestos en PDF con cálculo de anticipos en 30 segundos y controla el vencimiento de pólizas o clientes sin licencias caras.
+                        </p>
+                        <div class="pt-2 space-y-2 text-xs text-ink">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-goldDark"></i>
+                                <span>Emisión de presupuestos formales en PDF al instante</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-goldDark"></i>
+                                <span>Alertas de renovaciones y vencimientos para no perder clientes</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-goldDark"></i>
+                                <span>$0 de licencias mensuales de software inflado</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-6 border-t border-line text-xs font-medium text-inkMuted">
+                        Ideal para: Imprentas, aseguradoras, talleres y contratistas.
+                    </div>
+                </div>
+
+                <!-- System 4 -->
+                <div class="bg-white rounded-2xl p-8 border border-line hover:border-lineStrong transition-all space-y-6 flex flex-col justify-between shadow-sm reveal stagger-4">
+                    <div class="space-y-4">
+                        <div class="text-xs font-mono font-bold text-goldDark">SISTEMA 04</div>
+                        <h3 class="text-xl font-bold text-ink">Microapps & Monetización de Servicios</h3>
+                        <p class="text-xs sm:text-sm text-inkMuted leading-relaxed">
+                            Convierte tu conocimiento, método profesional o servicio en una herramienta web interactiva con tu marca. Capta clientes calificados, calcula presupuestos en vivo y cobra consultas o planes 24/7.
+                        </p>
+                        <div class="pt-2 space-y-2 text-xs text-ink">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-goldDark"></i>
+                                <span>Herramientas interactivas privadas (calculadoras, evaluadores, diagnósticos)</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-goldDark"></i>
+                                <span>Cobro directo integrado (Pago Móvil, Zelle o pasarelas de pago)</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-goldDark"></i>
+                                <span>Cero comisiones ni intermediarios: la herramienta y los clientes son tuyos</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-6 border-t border-line text-xs font-medium text-inkMuted">
+                        Ideal para: Consultores, médicos, nutricionistas, capacitadores y empresas de eventos.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- HECHO A MEDIDA: Cero Soluciones Enlatadas -->
+    <section id="a-medida" class="py-28 lg:py-32 relative overflow-hidden">
+        <!-- Subtle ambient glow -->
+        <div class="absolute -right-28 -top-28 w-96 h-96 rounded-full bg-canvasSubtle/40 blur-3xl pointer-events-none"></div>
+        <div class="absolute -left-28 -bottom-28 w-96 h-96 rounded-full bg-canvasSubtle/30 blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-6xl mx-auto px-6 relative z-10 space-y-16">
+            
+            <!-- Section Header -->
+            <div class="max-w-3xl space-y-4 reveal">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-canvasSubtle border border-line text-[11px] font-mono font-bold tracking-wider uppercase text-goldDark">
+                    <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
+                    <span>CERO PLANTILLAS GENÉRICAS</span>
+                </div>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-ink tracking-tight leading-[1.15]">
+                    Tu negocio no cabe en una plantilla prefabricada.
+                    <span class="font-serif italic font-normal text-gold block sm:inline"> Diseñamos a la medida de tu realidad.</span>
+                </h2>
+                <p class="text-sm sm:text-base text-inkMuted leading-relaxed">
+                    No vendemos software enlatado ni soluciones clonadas de internet. Tu empresa tiene historia, clientes leales y una forma particular de operar. En <strong>EMET</strong> construimos cada herramienta desde una hoja en blanco para honrar tres pilares esenciales que ninguna plantilla genérica puede resolver:
+                </p>
+            </div>
+
+            <!-- The 3 Bespoke Pillars Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Pillar 1: Marca e Identidad Visual -->
+                <div class="p-8 rounded-2xl bg-white border border-line hover:border-lineStrong transition-all duration-300 space-y-6 flex flex-col justify-between group reveal stagger-1 shadow-sm">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-canvasSubtle border border-line flex items-center justify-center text-gold group-hover:scale-105 transition-transform shadow-xs">
+                            <i data-lucide="palette" class="w-6 h-6"></i>
+                        </div>
+                        <div class="space-y-2">
+                            <span class="text-[11px] font-mono font-bold tracking-wider uppercase text-goldDark">01. IDENTIDAD & ESTILO</span>
+                            <h3 class="text-xl font-bold text-ink leading-snug">
+                                Tu Marca en Primer Plano (Cero Clones)
+                            </h3>
+                        </div>
+                        <p class="text-xs sm:text-sm text-inkMuted leading-relaxed">
+                            Respeto absoluto a tu identidad: tus colores exactos, tu logotipo, tus tipografías y tu estética visual. Tu cliente jamás sentirá que está usando un software frío o ajeno; sentirá el nivel, la seriedad y el prestigio de tu marca en cada pantalla.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-line/60 flex items-center gap-2 text-xs font-semibold text-ink">
+                        <i data-lucide="check" class="w-3.5 h-3.5 text-goldDark"></i>
+                        <span>Diseño exclusivo que transmite orgullo y confianza</span>
+                    </div>
+                </div>
+
+                <!-- Pillar 2: Operativa y Lógica Comercial -->
+                <div class="p-8 rounded-2xl bg-white border border-line hover:border-lineStrong transition-all duration-300 space-y-6 flex flex-col justify-between group reveal stagger-2 shadow-sm">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-canvasSubtle border border-line flex items-center justify-center text-gold group-hover:scale-105 transition-transform shadow-xs">
+                            <i data-lucide="sliders" class="w-6 h-6"></i>
+                        </div>
+                        <div class="space-y-2">
+                            <span class="text-[11px] font-mono font-bold tracking-wider uppercase text-goldDark">02. OPERATIVA REAL</span>
+                            <h3 class="text-xl font-bold text-ink leading-snug">
+                                Adaptado a Cómo Cobras y Trabajas
+                            </h3>
+                        </div>
+                        <p class="text-xs sm:text-sm text-inkMuted leading-relaxed">
+                            No te obligamos a cambiar cómo trabajas. Si en tu día a día manejas Pago Móvil, Zelle, efectivo o tasa oficial BCV; si cobras 50% de anticipo, tienes despachos por zonas o tiempos de taller, la herramienta se programa respetando tus reglas exactas.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-line/60 flex items-center gap-2 text-xs font-semibold text-ink">
+                        <i data-lucide="check" class="w-3.5 h-3.5 text-goldDark"></i>
+                        <span>El sistema se adapta a ti, no tú al sistema</span>
+                    </div>
+                </div>
+
+                <!-- Pillar 3: Valores y Trato Humano -->
+                <div class="p-8 rounded-2xl bg-white border border-line hover:border-lineStrong transition-all duration-300 space-y-6 flex flex-col justify-between group reveal stagger-3 shadow-sm">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 rounded-xl bg-canvasSubtle border border-line flex items-center justify-center text-gold group-hover:scale-105 transition-transform shadow-xs">
+                            <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+                        </div>
+                        <div class="space-y-2">
+                            <span class="text-[11px] font-mono font-bold tracking-wider uppercase text-goldDark">03. VALORES & CALIDEZ</span>
+                            <h3 class="text-xl font-bold text-ink leading-snug">
+                                La Misma Voz Cálida con la que Tú Atiendes
+                            </h3>
+                        </div>
+                        <p class="text-xs sm:text-sm text-inkMuted leading-relaxed">
+                            Cero robots insensibles o menús desesperantes de "marque 1". Cada mensaje redactado, cada confirmación de WhatsApp y cada flujo automático conserva el tono educado, cercano y respetuoso con el que tú atiendes a tus mejores clientes en persona.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-line/60 flex items-center gap-2 text-xs font-semibold text-ink">
+                        <i data-lucide="check" class="w-3.5 h-3.5 text-goldDark"></i>
+                        <span>Automatización que cuida la relación humana</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Contrast Comparison Banner: Software Enlatado vs. Traje a la Medida EMET -->
+            <div class="bg-white rounded-2xl p-6 sm:p-10 border border-line shadow-sm reveal">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <div class="lg:col-span-5 space-y-3">
+                        <span class="text-xs font-mono font-bold tracking-wider uppercase text-goldDark">DIFERENCIA FUNDAMENTAL</span>
+                        <h4 class="text-2xl font-bold text-ink tracking-tight">
+                            ¿Por qué un sistema a medida cuesta menos a largo plazo?
+                        </h4>
+                        <p class="text-xs sm:text-sm text-inkMuted leading-relaxed">
+                            El software genérico parece barato al inicio, hasta que descubres que debes pagar mensualidades eternas por funciones que no usas, mientras tus clientes se quejan de que no entienden el sistema o no pueden pagar en su moneda.
+                        </p>
+                    </div>
+
+                    <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- Red column -->
+                        <div class="p-5 rounded-xl bg-canvasSubtle/40 border border-rose-100/80 space-y-3">
+                            <div class="flex items-center gap-2 text-xs font-bold text-rose-600">
+                                <span>✕</span>
+                                <span class="uppercase tracking-wider">Software Genérico Enlatado</span>
+                            </div>
+                            <ul class="text-xs text-inkMuted space-y-2 leading-relaxed">
+                                <li class="flex items-start gap-1.5">
+                                    <span class="text-rose-400">•</span>
+                                    <span>Plantillas rígidas donde tu marca se diluye entre opciones inútiles.</span>
+                                </li>
+                                <li class="flex items-start gap-1.5">
+                                    <span class="text-rose-400">•</span>
+                                    <span>No entienden de Pago Móvil, multimoneda ni la dinámica local.</span>
+                                </li>
+                                <li class="flex items-start gap-1.5">
+                                    <span class="text-rose-400">•</span>
+                                    <span>Bots fríos y conmutadores que frustran y alejan a tus compradores.</span>
+                                </li>
+                                <li class="flex items-start gap-1.5">
+                                    <span class="text-rose-400">•</span>
+                                    <span>Suscripciones mensuales que nunca terminas de pagar.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Emerald column -->
+                        <div class="p-5 rounded-xl bg-canvasSubtle/40 border border-emerald-100/80 space-y-3">
+                            <div class="flex items-center gap-2 text-xs font-bold text-emerald-700">
+                                <span>✓</span>
+                                <span class="uppercase tracking-wider">Arquitectura a Medida EMET</span>
+                            </div>
+                            <ul class="text-xs text-inkMuted space-y-2 leading-relaxed">
+                                <li class="flex items-start gap-1.5">
+                                    <span class="text-emerald-500">•</span>
+                                    <span>Diseño artesanal creado para proyectar el valor real de tu marca.</span>
+                                </li>
+                                <li class="flex items-start gap-1.5">
+                                    <span class="text-emerald-500">•</span>
+                                    <span>Calibrado con exactitud para tus métodos de cobro y entregas.</span>
+                                </li>
+                                <li class="flex items-start gap-1.5">
+                                    <span class="text-emerald-500">•</span>
+                                    <span>Comunicación cálida redactada con tus palabras y valores.</span>
+                                </li>
+                                <li class="flex items-start gap-1.5">
+                                    <span class="text-emerald-500">•</span>
+                                    <span>Una herramienta tuya, que resuelve de verdad y sin ataduras.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SCROLL CINERA EXPERIENCE: La Empresaria y la Perspectiva de Paz -->
+    <section id="experiencia-paz" class="relative bg-ink text-canvas overflow-visible" style="height: 440vh;">
+        <!-- Sticky Window that stays fixed on screen during the 440vh scroll -->
+        <div class="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center bg-ink">
+            
+            <!-- High-Performance Canvas for 60fps Bidirectional Frame Scrubbing -->
+            <canvas id="scrub-canvas" class="absolute inset-0 w-full h-full object-cover filter brightness-[0.98] contrast-[1.02]"></canvas>
+
+            <!-- Minimal Edge Seamless Section Transitions Only (No dark fog, no veil over the woman) -->
+            <div class="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-ink/50 to-transparent pointer-events-none"></div>
+            <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-ink/60 to-transparent pointer-events-none"></div>
+
+            <!-- Top Gold Scroll Progress Indicator Bar -->
+            <div class="absolute top-0 inset-x-0 h-1 bg-white/10 z-30 pointer-events-none">
+                <div id="scrub-progress-bar" class="h-full bg-gold transition-all duration-75" style="width: 0%;"></div>
+            </div>
+
+            <!-- Top-Left Subtle Status Pill (Completely Minimal) -->
+            <div class="absolute top-6 left-6 z-20 hidden sm:flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-goldLight drop-shadow-md pointer-events-none">
+                <span class="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
+                <span style="text-shadow: 0 2px 8px rgba(0,0,0,0.9);">La Perspectiva del Líder</span>
+            </div>
+
+            <!-- Pure Floating Typography Container: NO Glass, NO Box, NO Blur, NO Background -->
+            <!-- Positioned on the RIGHT side so the woman's face, smile, and posture are 100% UNTOUCHED and fully visible -->
+            <div class="relative z-20 max-w-7xl mx-auto px-6 lg:px-12 w-full flex flex-col items-center lg:items-end justify-center pointer-events-none py-12">
+                <div class="grid grid-cols-1 grid-rows-1 w-full lg:max-w-md xl:max-w-lg text-center lg:text-left">
+                    
+                    <!-- Statement 1 (0% to 25% scroll) -->
+                    <div id="statement-1" class="col-start-1 row-start-1 statement-slide active space-y-2.5">
+                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.14]" style="text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 4px 24px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,1);">
+                            Tu negocio no se detiene si decides
+                            <span class="font-serif italic font-normal text-gold block mt-2" style="text-shadow: 0 2px 10px rgba(0,0,0,0.9);">tomarte un respiro.</span>
+                        </h2>
+                        <p class="text-sm sm:text-base text-gray-100 leading-relaxed font-normal" style="text-shadow: 0 2px 8px rgba(0,0,0,0.95), 0 1px 3px rgba(0,0,0,1);">
+                            Cuando los procesos están en orden, tu presencia física deja de ser el único motor que mantiene la empresa funcionando.
+                        </p>
+                    </div>
+
+                    <!-- Statement 2 (25% to 50% scroll) -->
+                    <div id="statement-2" class="col-start-1 row-start-1 statement-slide upcoming space-y-2.5">
+                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.14]" style="text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 4px 24px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,1);">
+                            El catálogo vende. El bot responde.
+                            <span class="font-serif italic font-normal text-gold block mt-2" style="text-shadow: 0 2px 10px rgba(0,0,0,0.9);">Las cuentas cuadran solas.</span>
+                        </h2>
+                        <p class="text-sm sm:text-base text-gray-100 leading-relaxed font-normal" style="text-shadow: 0 2px 8px rgba(0,0,0,0.95), 0 1px 3px rgba(0,0,0,1);">
+                            No creaste tu marca para pasar 14 horas al día respondiendo mensajes repetitivos de WhatsApp ni sacando cuentas en libretas.
+                        </p>
+                    </div>
+
+                    <!-- Statement 3 (50% to 75% scroll) -->
+                    <div id="statement-3" class="col-start-1 row-start-1 statement-slide upcoming space-y-2.5">
+                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.14]" style="text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 4px 24px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,1);">
+                            Dejas de apagar incendios para
+                            <span class="font-serif italic font-normal text-gold block mt-2" style="text-shadow: 0 2px 10px rgba(0,0,0,0.9);">empezar a mirar el panorama.</span>
+                        </h2>
+                        <p class="text-sm sm:text-base text-gray-100 leading-relaxed font-normal" style="text-shadow: 0 2px 8px rgba(0,0,0,0.95), 0 1px 3px rgba(0,0,0,1);">
+                            La verdadera libertad no es trabajar más horas; es tener una arquitectura operativa que cuida a tus clientes mientras tú vives tu vida.
+                        </p>
+                    </div>
+
+                    <!-- Statement 4 (75% to 100% scroll) -->
+                    <div id="statement-4" class="col-start-1 row-start-1 statement-slide upcoming space-y-2.5">
+                        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.1]" style="text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 4px 24px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,1);">
+                            Procesos en orden.
+                            <span class="font-serif italic font-normal text-gold block mt-2.5" style="text-shadow: 0 2px 10px rgba(0,0,0,0.9);">Mentes en paz.</span>
+                        </h2>
+                        <p class="text-sm sm:text-base text-gray-100 leading-relaxed font-normal" style="text-shadow: 0 2px 8px rgba(0,0,0,0.95), 0 1px 3px rgba(0,0,0,1);">
+                            La tecnología en silencio; tu serenidad en primer plano.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Bottom Floating Scroll Hint -->
+            <div class="absolute bottom-6 inset-x-0 text-center z-20 pointer-events-none">
+                <span class="inline-flex items-center gap-2 text-[10px] font-mono tracking-widest uppercase text-gray-300 backdrop-blur-md bg-ink/60 px-4 py-1.5 rounded-full border border-white/10 shadow-sm">
+                    <span>Desliza para continuar</span>
+                    <span class="animate-bounce text-gold">↓</span>
+                </span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- LIVE EXECUTIVE SIMULATOR: Calculadora de Retorno & Ahorro Operativo -->
+    <section id="simulador" class="py-28 lg:py-32">
+        <div class="max-w-6xl mx-auto px-6 space-y-12">
+            
+            <div class="text-center space-y-3 reveal">
+                <span class="text-xs font-mono font-bold tracking-wider uppercase text-goldDark">CALCULADORA DE RETORNO Y AHORRO OPERATIVO</span>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-ink tracking-tight">
+                    ¿Cuánto dinero y tiempo se le escapa hoy a tu negocio?
+                </h2>
+                <p class="text-sm sm:text-base text-inkMuted max-w-2xl mx-auto leading-relaxed">
+                    Pon a prueba tus números del día a día. Descubre cuánto te cuesta seguir operando con procesos manuales y hojas de cálculo dispersas, y cuánto capital recuperarías al implementar un sistema a medida.
+                </p>
+            </div>
+
+            <!-- The Tactile Diagnostic Hub -->
+            <div class="bg-white rounded-3xl p-6 sm:p-10 lg:p-12 border border-line shadow-sm reveal">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+                    
+                    <!-- Left: Operational Controls (7 Cols) -->
+                    <div class="lg:col-span-7 flex flex-col justify-between space-y-6">
+                        <div class="space-y-6">
+                            <div class="border-b border-line pb-4 flex items-center justify-between">
+                                <div>
+                                    <h3 class="text-base sm:text-lg font-bold text-ink">Variables de tu Operación Actual</h3>
+                                    <p class="text-xs text-inkMuted">Ajusta los 3 controles a la realidad diaria de tu negocio:</p>
+                                </div>
+                                <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-canvasSubtle border border-line text-[11px] font-mono text-inkMuted font-medium">
+                                    <i data-lucide="sliders" class="w-3.5 h-3.5 text-goldDark"></i>
+                                    <span>Ajuste en vivo</span>
+                                </span>
+                            </div>
+
+                            <!-- Slider 1: Operational Repetitive Hours -->
+                            <div class="space-y-3 p-4 sm:p-5 rounded-2xl bg-canvas border border-line">
+                                <div class="flex items-center justify-between">
+                                    <label for="slider-whatsapp" class="text-xs sm:text-sm font-bold text-ink flex items-center gap-2">
+                                        <i data-lucide="clock" class="w-4 h-4 text-emerald-600"></i>
+                                        <span>Horas al día en atención a clientes y tareas repetitivas</span>
+                                    </label>
+                                    <span id="val-whatsapp" class="px-3 py-1 rounded-lg bg-white border border-line font-mono text-xs font-bold text-ink shrink-0">
+                                        3.0 h / día
+                                    </span>
+                                </div>
+                                <input type="range" id="slider-whatsapp" class="emet-range" min="1" max="8" step="0.5" value="3" aria-label="Horas al día en tareas manuales">
+                                <div class="flex justify-between text-[11px] text-inkMuted">
+                                    <span>1 h (Baja carga manual)</span>
+                                    <span class="hidden sm:inline text-[10px] font-mono text-inkMuted/70">Responder precios, validar pagos, cargar datos y despachos</span>
+                                    <span>8 h (Jornada entera atrapado)</span>
+                                </div>
+                            </div>
+
+                            <!-- Slider 2: Manual Quotes -->
+                            <div class="space-y-3 p-4 sm:p-5 rounded-2xl bg-canvas border border-line">
+                                <div class="flex items-center justify-between">
+                                    <label for="slider-quotes" class="text-xs sm:text-sm font-bold text-ink flex items-center gap-2">
+                                        <i data-lucide="file-spreadsheet" class="w-4 h-4 text-goldDark"></i>
+                                        <span>Cotizaciones o presupuestos armados por semana</span>
+                                    </label>
+                                    <span id="val-quotes" class="px-3 py-1 rounded-lg bg-white border border-line font-mono text-xs font-bold text-ink shrink-0">
+                                        15 cotiz / sem
+                                    </span>
+                                </div>
+                                <input type="range" id="slider-quotes" class="emet-range" min="5" max="60" step="5" value="15" aria-label="Cotizaciones semanales">
+                                <div class="flex justify-between text-[11px] text-inkMuted">
+                                    <span>5 presupuestos</span>
+                                    <span class="hidden sm:inline text-[10px] font-mono text-inkMuted/70">~20 min por cotización en Excel o libreta</span>
+                                    <span>60 presupuestos</span>
+                                </div>
+                            </div>
+
+                            <!-- Slider 3: Hourly Value -->
+                            <div class="space-y-3 p-4 sm:p-5 rounded-2xl bg-canvas border border-line">
+                                <div class="flex items-center justify-between">
+                                    <label for="slider-rate" class="text-xs sm:text-sm font-bold text-ink flex items-center gap-2">
+                                        <i data-lucide="dollar-sign" class="w-4 h-4 text-gold"></i>
+                                        <span>Valor estimado de la hora (tuya o de tu equipo)</span>
+                                    </label>
+                                    <span id="val-rate" class="px-3 py-1 rounded-lg bg-white border border-line font-mono text-xs font-bold text-ink shrink-0">
+                                        $15 USD / h
+                                    </span>
+                                </div>
+                                <input type="range" id="slider-rate" class="emet-range" min="5" max="60" step="5" value="15" aria-label="Valor estimado por hora">
+                                <div class="flex justify-between text-[11px] text-inkMuted">
+                                    <span>$5 USD/h</span>
+                                    <span class="hidden sm:inline text-[10px] font-mono text-inkMuted/70">Salario operativo o valor de tu hora gerencial</span>
+                                    <span>$60 USD/h</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Editorial Reflection: El Verdadero Valor del Tiempo -->
+                        <div class="p-6 sm:p-7 rounded-2xl bg-gradient-to-br from-canvasSubtle/90 via-canvas to-canvasSubtle/60 border border-gold/25 shadow-sm relative overflow-hidden space-y-4">
+                            <!-- Subtle Ambient Gold Line on Top -->
+                            <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-gold/40 to-transparent"></div>
+
+                            <div class="flex items-center justify-between">
+                                <span class="text-[10px] font-mono uppercase tracking-widest text-goldDark font-bold flex items-center gap-1.5">
+                                    <i data-lucide="heart" class="w-3.5 h-3.5 text-gold"></i>
+                                    <span>LO QUE DE VERDAD IMPORTA</span>
+                                </span>
+                                <span class="text-xs font-serif italic text-goldDark">Tu vida real</span>
+                            </div>
+
+                            <blockquote class="text-xl sm:text-2xl font-serif italic text-ink leading-snug">
+                                “No creaste un negocio para perder tu vida en él, sino para tener la libertad de vivirla.”
+                            </blockquote>
+
+                            <p class="text-xs sm:text-sm text-inkMuted leading-relaxed">
+                                Tu tiempo no le pertenece a la rutina mecánica. Le pertenece a ver crecer a tus hijos, compartir con quienes amas, retomar las pasiones que dejaste en pausa y volver a conectar con tu propia esencia. Un sistema no existe para producir más, sino para devolverte a tu vida.
+                            </p>
+
+                            <div class="pt-2 flex items-center gap-3 border-t border-lineStrong/30 text-xs text-ink font-medium">
+                                <span class="w-2 h-2 rounded-full bg-gold shrink-0"></span>
+                                <span>Recupera tu tiempo. Lo que eres está fuera de la pantalla.</span>
+                            </div>
+                        </div>
+
+                        <!-- Micro Trust Banner -->
+                        <div class="p-4 rounded-2xl bg-canvasSubtle/60 border border-line flex items-start gap-3 text-xs text-inkMuted">
+                            <i data-lucide="shield-check" class="w-4 h-4 text-goldDark shrink-0 mt-0.5"></i>
+                            <span>
+                                <strong>Cálculo honesto y calibrado:</strong> Considera 22 días hábiles al mes y un promedio de 20 minutos de fricción por cotización manual armada desde cero.
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Right: Executive Diagnosis Card (5 Cols) -->
+                    <div class="lg:col-span-5 bg-gradient-to-b from-[#141B28] via-[#101622] to-[#0A0E17] text-canvas rounded-3xl p-6 sm:p-8 border border-gold/30 shadow-2xl flex flex-col justify-between relative overflow-hidden space-y-6">
+                        <!-- Ambient Radial Glow -->
+                        <div class="absolute -top-20 -right-20 w-44 h-44 bg-gold/15 rounded-full blur-3xl pointer-events-none"></div>
+
+                        <!-- Top Header -->
+                        <div class="flex items-center justify-between border-b border-white/10 pb-4 relative z-10">
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-red-500/15 border border-red-500/30 text-[10px] font-mono font-bold tracking-wider uppercase text-red-300">
+                                <span class="w-1.5 h-1.5 rounded-full bg-red-400"></span>
+                                <span>DIAGNÓSTICO DE FUGA OPERATIVA</span>
+                            </span>
+                            <span class="inline-flex items-center gap-1.5 text-[11px] font-mono text-gray-400">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                                <span>En vivo</span>
+                            </span>
+                        </div>
+
+                        <!-- Anti-Confusion Warning Callout -->
+                        <div class="p-3.5 rounded-xl bg-gold/10 border border-gold/30 flex items-start gap-3 text-xs text-amber-200/90 leading-relaxed relative z-10">
+                            <i data-lucide="info" class="w-4 h-4 text-gold shrink-0 mt-0.5"></i>
+                            <div>
+                                <span class="text-gold font-bold block mb-0.5 text-[10px] uppercase tracking-wider font-mono">Aclaratoria Importante</span>
+                                Este cálculo <strong class="text-white underline">NO es la tarifa de EMET</strong>. Es el dinero y tiempo que tu empresa <u>ya está perdiendo hoy</u> por no tener procesos automatizados.
+                            </div>
+                        </div>
+
+                        <!-- Main Metrics Group -->
+                        <div class="space-y-5 relative z-10">
+                            <!-- Metric 1: Hours Lost (Primary Human Metric) -->
+                            <div class="space-y-1">
+                                <span class="text-xs font-medium text-gray-400">Tiempo mensual absorbido en tareas mecánicas:</span>
+                                <div class="flex items-baseline gap-2">
+                                    <span id="res-hours" class="text-4xl sm:text-5xl font-extrabold font-mono tracking-tight text-white">88</span>
+                                    <span class="text-base sm:text-lg font-bold text-gold">horas / mes</span>
+                                </div>
+                                <div class="text-xs text-gray-300 font-mono flex items-center gap-1.5 pt-0.5">
+                                    <i data-lucide="calendar" class="w-3.5 h-3.5 text-gold"></i>
+                                    <span>Equivale a <strong id="res-days" class="text-white font-bold">11.0</strong> jornadas laborales enteras perdidas al mes</span>
+                                </div>
+                            </div>
+
+                            <!-- Metric 2: Financial Fuga vs Potential Savings (Split Comparison) -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                                <!-- Card A: Fuga Actual -->
+                                <div class="p-3.5 rounded-xl bg-white/[0.04] border border-red-500/20 space-y-1">
+                                    <span class="text-[10px] font-mono uppercase tracking-wider text-red-400 font-bold flex items-center gap-1.5">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-red-400"></span> Fuga en sueldos:
+                                    </span>
+                                    <div class="text-2xl font-extrabold font-mono text-white" id="res-money">$1,320 <span class="text-xs text-gray-400 font-sans font-normal">USD/mes</span></div>
+                                    <div class="text-[10px] text-gray-400 font-mono" id="res-money-year">≈ $15,840 USD al año</div>
+                                </div>
+
+                                <!-- Card B: Potencial de Ahorro -->
+                                <div class="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 space-y-1">
+                                    <span class="text-[10px] font-mono uppercase tracking-wider text-emerald-400 font-bold flex items-center gap-1.5">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Ahorro con EMET:
+                                    </span>
+                                    <div class="text-2xl font-extrabold font-mono text-emerald-400" id="res-savings">~$924 <span class="text-xs text-emerald-300 font-sans font-normal">USD/mes</span></div>
+                                    <div class="text-[10px] text-emerald-300/80 font-mono">Recuperas hasta el 70%</div>
+                                </div>
+                            </div>
+
+                            <!-- EMET Model Transparency Pill -->
+                            <div class="p-3 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-between gap-3 text-xs">
+                                <div class="flex items-center gap-2 text-gray-300">
+                                    <i data-lucide="shield-check" class="w-4 h-4 text-gold shrink-0"></i>
+                                    <span><strong>Modelo EMET:</strong> Proyecto llave en mano, pago único. <u>Sin mensualidades forzadas</u>.</span>
+                                </div>
+                                <span class="text-[10px] font-mono text-gold border border-gold/30 px-2 py-0.5 rounded-full bg-gold/5 shrink-0">$0 mensual</span>
+                            </div>
+
+                            <!-- Diagnostic Insight -->
+                            <div class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1.5">
+                                <div class="text-[11px] font-mono uppercase tracking-wider text-gold font-bold flex items-center gap-1.5">
+                                    <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+                                    <span>Veredicto Operativo:</span>
+                                </div>
+                                <p id="res-diagnosis" class="text-xs text-gray-200 leading-relaxed font-sans">
+                                    Tu mayor fuga está en la atención repetitiva y el procesamiento manual de pedidos. Un Sistema Operativo a Medida de EMET automatizará la toma de requerimientos, validación y flujos de trabajo, liberando más del 70% de este tiempo.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- CTA Button & Footnote -->
+                        <div class="space-y-2.5 pt-2 relative z-10">
+                            <a id="btn-calc-whatsapp" 
+                               href="#" 
+                               target="_blank" 
+                               class="w-full py-4 px-5 rounded-xl bg-gold hover:bg-goldDark text-ink font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all duration-200 shadow-xl hover:shadow-gold/20 active:scale-[0.99] text-center group">
+                                <i data-lucide="message-circle" class="w-4 h-4 shrink-0"></i>
+                                <span>Recuperar estas horas con EMET</span>
+                                <i data-lucide="arrow-right" class="w-4 h-4 shrink-0 group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                            <p class="text-[10px] text-center text-gray-400 font-mono">
+                                Conversación de 15 minutos con Joaquín Sumalla • Cero compromiso
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Real Case Studies: Editorial Cards -->
+    <section id="casos" class="py-28 lg:py-32">
+        <div class="max-w-6xl mx-auto px-6 space-y-16">
+            
+            <div class="max-w-2xl space-y-3 reveal">
+                <span class="text-xs font-mono font-bold tracking-wider uppercase text-goldDark">CASOS REALES</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-ink tracking-tight">
+                    La prueba viva de nuestro trabajo.
+                </h2>
+                <p class="text-sm sm:text-base text-inkMuted leading-relaxed">
+                    Sistemas que ya están ahorrando horas de trabajo a profesionales y empresas en la calle.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Case 1 -->
+                <div class="p-8 rounded-2xl bg-white border border-line space-y-5 reveal stagger-1 flex flex-col justify-between shadow-sm">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="font-mono font-bold text-goldDark">EMPRINTELAB</span>
+                            <span class="text-inkMuted">Sector Imprenta</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-ink">Cotizador en 30 Segundos</h4>
+                        <p class="text-xs text-inkMuted leading-relaxed">
+                            Cálculo multimoneda instantáneo con descarga en PDF formal para WhatsApp. Dejó atrás las cuentas en libreta y aceleró los cierres de venta en un 40%.
+                        </p>
+                        <!-- Real Quote -->
+                        <div class="p-3.5 rounded-xl bg-canvasSubtle/40 border border-line/60 text-xs text-ink space-y-1">
+                            <p class="italic text-[11px] text-inkMuted leading-relaxed">"Antes pasaba 2 horas cada noche sacando cuentas de papel. Con EMET, el cliente recibe el PDF formal en 30 segundos directo en WhatsApp."</p>
+                            <span class="font-semibold text-[10px] text-goldDark block">— Ing. Carlos Méndez · Operaciones</span>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-line text-xs font-mono text-ink">
+                        Resultado: <strong>12 horas semanales recuperadas</strong>
+                    </div>
+                </div>
+
+                <!-- Case 2 -->
+                <div class="p-8 rounded-2xl bg-white border border-line space-y-5 reveal stagger-2 flex flex-col justify-between shadow-sm">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="font-mono font-bold text-goldDark">CORREDURÍA</span>
+                            <span class="text-inkMuted">Sector Seguros</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-ink">CRM de Pólizas en la Nube</h4>
+                        <p class="text-xs text-inkMuted leading-relaxed">
+                            Digitalización de cartera entera de clientes desde archivos Excel a base de datos segura. Control de vencimientos y recordatorios con cero dólares en licencias mensuales.
+                        </p>
+                        <!-- Real Quote -->
+                        <div class="p-3.5 rounded-xl bg-canvasSubtle/40 border border-line/60 text-xs text-ink space-y-1">
+                            <p class="italic text-[11px] text-inkMuted leading-relaxed">"Teníamos 800 pólizas dispersas y pánico a que se venciera una sin avisar. El sistema nos da alertas automáticas y no pagamos alquiler mensual."</p>
+                            <span class="font-semibold text-[10px] text-goldDark block">— Lic. Mariela Rivas · Corredora Principal</span>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-line text-xs font-mono text-ink">
+                        Resultado: <strong>Cero pólizas vencidas por descuido</strong>
+                    </div>
+                </div>
+
+                <!-- Case 3 -->
+                <div class="p-8 rounded-2xl bg-white border border-line space-y-5 reveal stagger-3 flex flex-col justify-between shadow-sm">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="font-mono font-bold text-goldDark">AK-STORE</span>
+                            <span class="text-inkMuted">Comercio Minorista</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-ink">Catálogo con Inventario en Vivo</h4>
+                        <p class="text-xs text-inkMuted leading-relaxed">
+                            Eliminación de catálogos en PDF. El dueño cambia precios y productos desde su propio celular en 10 segundos y el cliente siempre ve la información al día.
+                        </p>
+                        <!-- Real Quote -->
+                        <div class="p-3.5 rounded-xl bg-canvasSubtle/40 border border-line/60 text-xs text-ink space-y-1">
+                            <p class="italic text-[11px] text-inkMuted leading-relaxed">"El cliente ya no me pide el PDF pesado que nunca abría. Entran al link, eligen USD o bolívares y me llega el pedido listo para despachar."</p>
+                            <span class="font-semibold text-[10px] text-goldDark block">— Andrés K. · Fundador</span>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-line text-xs font-mono text-ink">
+                        Resultado: <strong>Cero PDFs pesados enviados</strong>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- THE EMET METHODOLOGY & SOVEREIGNTY GUARANTEE: Clear, Predictable, Zero-Stress -->
+    <section id="proceso" class="py-28 lg:py-32">
+        <div class="max-w-6xl mx-auto px-6 space-y-20">
+            
+            <!-- Section Header -->
+            <div class="max-w-3xl space-y-4 reveal">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-canvasSubtle border border-line text-[11px] font-mono font-bold tracking-wider uppercase text-goldDark">
+                    <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
+                    <span>METODOLOGÍA TRANSPARENTE</span>
+                </div>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-ink tracking-tight leading-[1.15]">
+                    De tu desorden actual a tu sistema funcionando
+                    <span class="font-serif italic font-normal text-gold block sm:inline"> en 4 pasos simples.</span>
+                </h2>
+                <p class="text-sm sm:text-base text-inkMuted leading-relaxed">
+                    Sin reuniones interminables, sin términos técnicos confusos y sin meses de espera. Un camino estructurado para que sepas exactamente qué esperar en cada etapa del camino:
+                </p>
+            </div>
+
+            <!-- 4-Step Interactive Pathway Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Step 01 -->
+                <div class="bg-white rounded-2xl p-7 border border-line hover:border-lineStrong transition-all duration-300 space-y-5 flex flex-col justify-between shadow-sm group reveal stagger-1">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded-lg bg-canvasSubtle border border-line text-[10px] font-mono font-bold text-goldDark uppercase">Paso 01 · Día 1</span>
+                            <div class="w-10 h-10 rounded-xl bg-canvasSubtle border border-line flex items-center justify-center text-gold group-hover:scale-105 transition-transform shadow-xs">
+                                <i data-lucide="coffee" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-ink">La Radiografía (15 min)</h3>
+                        <p class="text-xs text-inkMuted leading-relaxed">
+                            Conversamos por videollamada o WhatsApp. Me cuentas cómo opera tu negocio hoy y dónde se te escapa el tiempo. Cero tecnicismos; hablamos en términos de tu dinero, tus clientes y tus procesos.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-line/60 text-[11px] font-medium text-ink flex items-center gap-1.5">
+                        <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i>
+                        <span>Diagnóstico 100% gratuito</span>
+                    </div>
+                </div>
+
+                <!-- Step 02 -->
+                <div class="bg-white rounded-2xl p-7 border border-line hover:border-lineStrong transition-all duration-300 space-y-5 flex flex-col justify-between shadow-sm group reveal stagger-2">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded-lg bg-canvasSubtle border border-line text-[10px] font-mono font-bold text-goldDark uppercase">Paso 02 · Día 3-5</span>
+                            <div class="w-10 h-10 rounded-xl bg-canvasSubtle border border-line flex items-center justify-center text-gold group-hover:scale-105 transition-transform shadow-xs">
+                                <i data-lucide="smartphone" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-ink">Prototipo en tu Celular</h3>
+                        <p class="text-xs text-inkMuted leading-relaxed">
+                            Construimos una primera versión viva de tu herramienta adaptada con tu logo, tus colores, tus productos y tu moneda. La tocas y pruebas tú mismo en tu propio teléfono antes de avanzar.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-line/60 text-[11px] font-medium text-ink flex items-center gap-1.5">
+                        <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i>
+                        <span>Cero compromisos a ciegas</span>
+                    </div>
+                </div>
+
+                <!-- Step 03 -->
+                <div class="bg-white rounded-2xl p-7 border border-line hover:border-lineStrong transition-all duration-300 space-y-5 flex flex-col justify-between shadow-sm group reveal stagger-3">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded-lg bg-canvasSubtle border border-line text-[10px] font-mono font-bold text-goldDark uppercase">Paso 03 · Día 7-10</span>
+                            <div class="w-10 h-10 rounded-xl bg-canvasSubtle border border-line flex items-center justify-center text-gold group-hover:scale-105 transition-transform shadow-xs">
+                                <i data-lucide="sliders" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-ink">Calibración en Vivo</h3>
+                        <p class="text-xs text-inkMuted leading-relaxed">
+                            Probamos el sistema en tu negocio real con 2 o 3 clientes o pedidos de prueba. Ajustamos mensajes, botones y cálculos para garantizar que no haya fricción para nadie.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-line/60 text-[11px] font-medium text-ink flex items-center gap-1.5">
+                        <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i>
+                        <span>Prueba en la vida real</span>
+                    </div>
+                </div>
+
+                <!-- Step 04 -->
+                <div class="bg-white rounded-2xl p-7 border border-line hover:border-lineStrong transition-all duration-300 space-y-5 flex flex-col justify-between shadow-sm group reveal stagger-4">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="px-2.5 py-1 rounded-lg bg-canvasSubtle border border-line text-[10px] font-mono font-bold text-goldDark uppercase">Paso 04 · Día 12-14</span>
+                            <div class="w-10 h-10 rounded-xl bg-canvasSubtle border border-line flex items-center justify-center text-gold group-hover:scale-105 transition-transform shadow-xs">
+                                <i data-lucide="key" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-lg font-bold text-ink">Entrega & Soberanía</h3>
+                        <p class="text-xs text-inkMuted leading-relaxed">
+                            Te entregamos las llaves de tu sistema junto con cápsulas de video de 1 minuto para tu equipo. La herramienta y los datos son 100% tuyos. Cero rentas forzadas de por vida.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-line/60 text-[11px] font-medium text-ink flex items-center gap-1.5">
+                        <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i>
+                        <span>Soporte 30 días incluido</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- The Sovereignty & Risk-Reversal Guarantee Container -->
+            <div class="bg-white rounded-3xl p-8 sm:p-12 border border-line shadow-sm space-y-8 reveal">
+                <div class="max-w-2xl space-y-3">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-canvasSubtle border border-line text-[11px] font-mono font-bold tracking-wider uppercase text-goldDark">
+                        <i data-lucide="shield-check" class="w-3.5 h-3.5 text-gold"></i>
+                        <span>CONTRATO MORAL DE EMET</span>
+                    </div>
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-ink tracking-tight">
+                        La Garantía de Soberanía Digital: Cero Letras Chiquitas.
+                    </h3>
+                    <p class="text-xs sm:text-sm text-inkMuted leading-relaxed">
+                        Construimos sistemas para liberarte del desorden, no para convertirnos en un gasto fijo que te quite el sueño. Por eso todo proyecto en EMET incluye tres cláusulas innegociables:
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+                    
+                    <div class="p-6 rounded-2xl bg-canvasSubtle/30 border border-line space-y-3">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-700 font-bold text-xs">
+                            <i data-lucide="database" class="w-4 h-4"></i>
+                        </div>
+                        <h4 class="text-sm font-bold text-ink">1. Propiedad Absoluta</h4>
+                        <p class="text-xs text-inkMuted leading-relaxed">
+                            Tus bases de datos, catálogos y contactos están en cuentas a tu nombre. Si el día de mañana no quieres saber más de nosotros, tu herramienta sigue operativa sin pedir permiso ni pagar rescates.
+                        </p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-canvasSubtle/30 border border-line space-y-3">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-700 font-bold text-xs">
+                            <i data-lucide="ban" class="w-4 h-4"></i>
+                        </div>
+                        <h4 class="text-sm font-bold text-ink">2. $0 en Licencias Tramposas</h4>
+                        <p class="text-xs text-inkMuted leading-relaxed">
+                            Cero comisiones ocultas por venta ni suscripciones mensuales por cada empleado que abra el panel. Pagas por la construcción de tu activo una sola vez, sin letras pequeñas.
+                        </p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-canvasSubtle/30 border border-line space-y-3">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-700 font-bold text-xs">
+                            <i data-lucide="heart-handshake" class="w-4 h-4"></i>
+                        </div>
+                        <h4 class="text-sm font-bold text-ink">3. 30 Días de Ajuste Total</h4>
+                        <p class="text-xs text-inkMuted leading-relaxed">
+                            Tras la entrega, te acompañamos durante un mes completo de uso real. Cualquier botón que requiera ajuste, texto que quieras pulir o calibración de tasas se resuelve sin costo adicional.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Founder Note: Personal & Authentic -->
+    <section class="py-28 lg:py-32">
+        <div class="max-w-3xl mx-auto px-6 text-center space-y-6 reveal">
+            <img src="logo_emet.jpg" alt="Joaquín Sumalla / EMET" class="w-16 h-16 rounded-2xl mx-auto object-cover border border-line shadow-sm">
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-ink tracking-tight">
+                "No soy un programador tradicional. Soy alguien que aprendió a usar la tecnología para resolver la vida real."
+            </h3>
+            <p class="text-sm sm:text-base text-inkMuted leading-relaxed max-w-xl mx-auto">
+                Mi compromiso cuando converso con un dueño de negocio es la honestidad radical de <strong>EMET</strong>. No te voy a vender un sistema que no necesitas, ni te voy a llenar de términos técnicos complicados. Mi trabajo es dejar tus procesos en orden para que tu mente esté en paz.
+            </p>
+            <div class="pt-2">
+                <span class="text-xs font-bold text-ink tracking-wider uppercase">— Joaquín Sumalla · Fundador de EMET</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FREQUENTLY ASKED QUESTIONS: Direct, Honest, Radical Clarity -->
+    <section id="faq" class="py-28 lg:py-32">
+        <div class="max-w-4xl mx-auto px-6 space-y-16">
+            
+            <!-- Section Header -->
+            <div class="text-center space-y-4 max-w-2xl mx-auto reveal">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-canvasSubtle border border-line text-[11px] font-mono font-bold tracking-wider uppercase text-goldDark">
+                    <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
+                    <span>RESPUESTAS DIRECTAS</span>
+                </div>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-ink tracking-tight">
+                    Preguntas frecuentes.
+                    <span class="font-serif italic font-normal text-gold block sm:inline"> La verdad por delante.</span>
+                </h2>
+                <p class="text-sm sm:text-base text-inkMuted leading-relaxed">
+                    Las dudas que todo dueño de negocio tiene antes de escribirnos, respondidas con la honestidad radical de EMET:
+                </p>
+            </div>
+
+            <!-- Accordion List -->
+            <div class="space-y-4 reveal">
+                
+                <!-- FAQ 1 -->
+                <details class="group bg-white rounded-2xl border border-line p-6 [&_summary::-webkit-details-marker]:hidden shadow-sm transition-all duration-200 open:border-lineStrong">
+                    <summary class="flex items-center justify-between cursor-pointer list-none gap-4">
+                        <span class="text-base font-bold text-ink group-open:text-goldDark transition-colors">
+                            ¿Cuánto tiempo toma tener mi sistema listo y funcionando?
+                        </span>
+                        <div class="w-8 h-8 rounded-lg bg-canvasSubtle border border-line flex items-center justify-center text-ink shrink-0 group-open:rotate-180 transition-transform duration-200">
+                            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                        </div>
+                    </summary>
+                    <div class="pt-4 text-xs sm:text-sm text-inkMuted leading-relaxed border-t border-line/60 mt-4 space-y-2">
+                        <p>
+                            Para la mayoría de las herramientas (como un Catálogo Web interactivo, un Cotizador en PDF o un Asistente operativo de WhatsApp), el tiempo promedio de entrega es de <strong>7 a 14 días hábiles</strong>.
+                        </p>
+                        <p>
+                            No creemos en proyectos burocráticos de 6 meses que nunca terminan. Diseñamos prototipos rápidos y funcionales para que tu empresa empiece a recuperar horas de trabajo esta misma quincena.
+                        </p>
+                    </div>
+                </details>
+
+                <!-- FAQ 2 -->
+                <details class="group bg-white rounded-2xl border border-line p-6 [&_summary::-webkit-details-marker]:hidden shadow-sm transition-all duration-200 open:border-lineStrong">
+                    <summary class="flex items-center justify-between cursor-pointer list-none gap-4">
+                        <span class="text-base font-bold text-ink group-open:text-goldDark transition-colors">
+                            ¿Tengo que pagar una mensualidad o mantenimiento obligatorio a EMET?
+                        </span>
+                        <div class="w-8 h-8 rounded-lg bg-canvasSubtle border border-line flex items-center justify-center text-ink shrink-0 group-open:rotate-180 transition-transform duration-200">
+                            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                        </div>
+                    </summary>
+                    <div class="pt-4 text-xs sm:text-sm text-inkMuted leading-relaxed border-t border-line/60 mt-4 space-y-2">
+                        <p>
+                            <strong>No.</strong> En EMET tú pagas por la construcción de tu herramienta, no por un alquiler forzado. El sistema y los datos son de tu propiedad.
+                        </p>
+                        <p>
+                            Si en el futuro deseas que agreguemos un nuevo módulo, conectemos otra pasarela o diseñemos una nueva función, cotizamos únicamente esa ampliación puntual. Si no quieres tocar nada, tu sistema sigue corriendo sin pagar un centavo de renta.
+                        </p>
+                    </div>
+                </details>
+
+                <!-- FAQ 3 -->
+                <details class="group bg-white rounded-2xl border border-line p-6 [&_summary::-webkit-details-marker]:hidden shadow-sm transition-all duration-200 open:border-lineStrong">
+                    <summary class="flex items-center justify-between cursor-pointer list-none gap-4">
+                        <span class="text-base font-bold text-ink group-open:text-goldDark transition-colors">
+                            ¿Cómo manejan el cambio de precios y la tasa del dólar (BCV / Paralelo) en Venezuela?
+                        </span>
+                        <div class="w-8 h-8 rounded-lg bg-canvasSubtle border border-line flex items-center justify-center text-ink shrink-0 group-open:rotate-180 transition-transform duration-200">
+                            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                        </div>
+                    </summary>
+                    <div class="pt-4 text-xs sm:text-sm text-inkMuted leading-relaxed border-t border-line/60 mt-4 space-y-2">
+                        <p>
+                            Diseñamos con la realidad de la calle en mente. Todos nuestros catálogos y cotizadores cuentan con un <strong>conmutador instantáneo multimoneda</strong>.
+                        </p>
+                        <p>
+                            Tendrás un panel de control ultra sencillo en tu teléfono: cambias la tasa del día o un precio en 10 segundos, y al instante todos los productos, cotizaciones y pedidos en WhatsApp se recalculan solos. Cero cálculos a mano.
+                        </p>
+                    </div>
+                </details>
+
+                <!-- FAQ 4 -->
+                <details class="group bg-white rounded-2xl border border-line p-6 [&_summary::-webkit-details-marker]:hidden shadow-sm transition-all duration-200 open:border-lineStrong">
+                    <summary class="flex items-center justify-between cursor-pointer list-none gap-4">
+                        <span class="text-base font-bold text-ink group-open:text-goldDark transition-colors">
+                            Mi equipo no sabe nada de computación y solo usan WhatsApp. ¿Podrán manejarlo?
+                        </span>
+                        <div class="w-8 h-8 rounded-lg bg-canvasSubtle border border-line flex items-center justify-center text-ink shrink-0 group-open:rotate-180 transition-transform duration-200">
+                            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                        </div>
+                    </summary>
+                    <div class="pt-4 text-xs sm:text-sm text-inkMuted leading-relaxed border-t border-line/60 mt-4 space-y-2">
+                        <p>
+                            Totalmente. Nuestra regla fundamental de diseño es: <em>si tu personal sabe enviar un mensaje de voz o una foto en WhatsApp, sabe usar nuestro sistema</em>.
+                        </p>
+                        <p>
+                            Eliminamos interfaces sobrecargadas con 100 botones que nadie toca. Diseñamos pantallas limpias y táctiles, y te dejamos videos breves de 60 segundos explicando cada tarea para que no tengas que capacitar a nadie dos veces.
+                        </p>
+                    </div>
+                </details>
+
+                <!-- FAQ 5 -->
+                <details class="group bg-white rounded-2xl border border-line p-6 [&_summary::-webkit-details-marker]:hidden shadow-sm transition-all duration-200 open:border-lineStrong">
+                    <summary class="flex items-center justify-between cursor-pointer list-none gap-4">
+                        <span class="text-base font-bold text-ink group-open:text-goldDark transition-colors">
+                            ¿Qué pasa si mi negocio es muy específico o tengo una dinámica de cobro inusual?
+                        </span>
+                        <div class="w-8 h-8 rounded-lg bg-canvasSubtle border border-line flex items-center justify-center text-ink shrink-0 group-open:rotate-180 transition-transform duration-200">
+                            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                        </div>
+                    </summary>
+                    <div class="pt-4 text-xs sm:text-sm text-inkMuted leading-relaxed border-t border-line/60 mt-4 space-y-2">
+                        <p>
+                            Esa es precisamente la razón de ser de EMET. No vendemos software de plantilla que te obliga a cambiar cómo trabajas.
+                        </p>
+                        <p>
+                            Si cobras 50% de anticipo, manejas Pago Móvil combinado con Zelle o efectivo, despachas por zonas o manejas tiempos de taller particulares, la herramienta se programa respetando exactamente tus reglas comerciales.
+                        </p>
+                    </div>
+                </details>
+
+                <!-- FAQ 6 -->
+                <details class="group bg-white rounded-2xl border border-line p-6 [&_summary::-webkit-details-marker]:hidden shadow-sm transition-all duration-200 open:border-lineStrong">
+                    <summary class="flex items-center justify-between cursor-pointer list-none gap-4">
+                        <span class="text-base font-bold text-ink group-open:text-goldDark transition-colors">
+                            ¿Cómo doy el primer paso y qué pasa en la Auditoría de 15 minutos?
+                        </span>
+                        <div class="w-8 h-8 rounded-lg bg-canvasSubtle border border-line flex items-center justify-center text-ink shrink-0 group-open:rotate-180 transition-transform duration-200">
+                            <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                        </div>
+                    </summary>
+                    <div class="pt-4 text-xs sm:text-sm text-inkMuted leading-relaxed border-t border-line/60 mt-4 space-y-2">
+                        <p>
+                            El primer paso es 100% libre de compromiso. Nos escribes por WhatsApp, acordamos una videollamada de 15 minutos y te hacemos 5 preguntas sobre tu operativa diaria.
+                        </p>
+                        <p>
+                            Al terminar la llamada, te entregamos un mapa claro de los 3 procesos que podrías optimizar de inmediato. Si decides avanzar juntos, genial; y si decides hacerlo por tu cuenta o con otra persona, te quedas con el diagnóstico totalmente gratis.
+                        </p>
+                    </div>
+                </details>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- The 15-Minute Audit Invitation: With Cinematic Animated Logo Background -->
+    <section class="relative py-28 lg:py-36 overflow-hidden bg-canvas">
+        
+        <!-- Full-Bleed Video Background with Ultra-Smooth Gradient Mask: Zero Seams, Single Unified Canvas -->
+        <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none audit-video-mask">
+            <video autoplay loop muted playsinline poster="emet_logo_animado_poster.jpg" 
+                   class="w-full h-full object-cover object-[center_center] lg:object-[68%_center] filter brightness-[0.98] contrast-[1.02] transform lg:translate-x-[12%] lg:scale-105">
+                <source src="emet_logo_animado.webm" type="video/webm">
+                <source src="emet_logo_animado.mp4" type="video/mp4">
+            </video>
+
+            <!-- Top/Bottom Subtle Transition Fades -->
+            <div class="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-canvas to-transparent"></div>
+            <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-canvas to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-6">
+            <div class="max-w-xl lg:max-w-lg space-y-8 text-left reveal">
+                <span class="text-xs font-mono font-bold tracking-wider uppercase text-goldDark">EL PRIMER PASO</span>
+                <h2 class="text-4xl sm:text-5xl font-extrabold text-ink tracking-tight leading-[1.12]">
+                    15 minutos para descubrir dónde se te está fugando el tiempo.
+                </h2>
+                <p class="text-base text-inkMuted leading-relaxed">
+                    Una videollamada sin presión de venta. Te hacemos 5 preguntas sobre tu día a día y te entregamos el mapa de los 3 procesos que puedes automatizar esta misma semana.
+                </p>
+
+                <div class="pt-2">
+                    <a href="https://wa.me/584242544045?text=Hola%20Joaquin,%20quiero%20agendar%20mi%20Auditoria%20Operativa%20de%2015%20minutos%20para%20mi%20negocio." 
+                       target="_blank"
+                       class="inline-flex px-8 py-4 rounded-xl bg-ink text-canvas hover:bg-goldDark font-bold text-sm transition-all duration-300 shadow-xl items-center gap-3 group">
+                        <i data-lucide="calendar" class="w-4 h-4 text-gold"></i>
+                        <span>Agendar Auditoría Gratuita en WhatsApp</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 text-gold group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <div class="pt-2 flex flex-wrap gap-6 text-xs text-inkMuted">
+                    <span class="flex items-center gap-1.5">
+                        <i data-lucide="check" class="w-3.5 h-3.5 text-goldDark"></i>
+                        Sin costo ni compromiso
+                    </span>
+                    <span class="flex items-center gap-1.5">
+                        <i data-lucide="check" class="w-3.5 h-3.5 text-goldDark"></i>
+                        Mapa de optimización incluido
+                    </span>
+                    <span class="flex items-center gap-1.5">
+                        <i data-lucide="check" class="w-3.5 h-3.5 text-goldDark"></i>
+                        Atendido directamente por Joaquín
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-line bg-canvas py-12 text-inkMuted text-xs">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <img src="logo_emet_transparente.png" alt="Logo EMET" class="h-7 w-auto object-contain">
+                <span class="text-lineStrong">|</span>
+                <span>Procesos en orden, mentes en paz</span>
+            </div>
+            <div>
+                <span>© 2026 EMET Soluciones Operativas. Caracas · Remoto Global.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Permanent Floating WhatsApp Button (Icon Only, Clean & Minimal) -->
+    <a href="https://wa.me/584242544045?text=Hola%20Joaquin,%20estoy%20viendo%20la%20web%20de%20EMET%20y%20tengo%20una%20consulta%20sobre%20los%20procesos%20de%20mi%20negocio."
+       target="_blank"
+       aria-label="Contactar a Joaquín Sumalla por WhatsApp"
+       class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 border-2 border-white/20">
+        <svg class="w-7 h-7 fill-white" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+
+    <!-- Interactive Script for Live Simulator -->
+    <script>
+        lucide.createIcons();
+
+        // ==========================================
+        // EMET OPERATIONAL WASTE CALCULATOR ENGINE
+        // ==========================================
+        function updateSliderFill(slider) {
+            if (!slider) return;
+            const min = parseFloat(slider.min) || 0;
+            const max = parseFloat(slider.max) || 100;
+            const val = parseFloat(slider.value) || 0;
+            const percentage = ((val - min) / (max - min)) * 100;
+            slider.style.background = `linear-gradient(to right, #C29B53 0%, #C29B53 ${percentage}%, #E8E2D9 ${percentage}%, #E8E2D9 100%)`;
+        }
+
+        function calculateWaste() {
+            const sliderWA = document.getElementById('slider-whatsapp');
+            const sliderQ = document.getElementById('slider-quotes');
+            const sliderR = document.getElementById('slider-rate');
+
+            if (!sliderWA || !sliderQ || !sliderR) return;
+
+            updateSliderFill(sliderWA);
+            updateSliderFill(sliderQ);
+            updateSliderFill(sliderR);
+
+            const hoursWADay = parseFloat(sliderWA.value) || 0;
+            const quotesWeek = parseInt(sliderQ.value, 10) || 0;
+            const hourlyRate = parseInt(sliderR.value, 10) || 0;
+
+            // Live indicator labels
+            const valWA = document.getElementById('val-whatsapp');
+            const valQ = document.getElementById('val-quotes');
+            const valR = document.getElementById('val-rate');
+
+            if (valWA) valWA.innerText = `${hoursWADay.toFixed(1)} h / día`;
+            if (valQ) valQ.innerText = `${quotesWeek} cotiz / sem`;
+            if (valR) valR.innerText = `$${hourlyRate} USD / h`;
+
+            // Operational Math:
+            // 22 business days per month
+            const hoursWAMonth = Math.round(hoursWADay * 22);
+            // 20 minutes (0.333h) per manual quote in excel/notebook, 4.33 weeks per month
+            const hoursQuotesMonth = Math.round((quotesWeek * (20 / 60)) * 4.33);
+            const totalHoursMonth = hoursWAMonth + hoursQuotesMonth;
+            const workDaysLost = (totalHoursMonth / 8).toFixed(1);
+            const moneyMonth = totalHoursMonth * hourlyRate;
+            const moneyYear = moneyMonth * 12;
+            const savingsMonth = Math.round(moneyMonth * 0.70);
+
+            // Update DOM metrics
+            const resHours = document.getElementById('res-hours');
+            const resDays = document.getElementById('res-days');
+            const resMoney = document.getElementById('res-money');
+            const resMoneyYear = document.getElementById('res-money-year');
+            const resSavings = document.getElementById('res-savings');
+            const resDiagnosis = document.getElementById('res-diagnosis');
+            const btnWA = document.getElementById('btn-calc-whatsapp');
+
+            if (resHours) resHours.innerText = totalHoursMonth;
+            if (resDays) resDays.innerText = workDaysLost;
+            if (resMoney) resMoney.innerText = `$${moneyMonth.toLocaleString('en-US')}`;
+            if (resMoneyYear) resMoneyYear.innerText = `≈ $${moneyYear.toLocaleString('en-US')} USD al año`;
+            if (resSavings) resSavings.innerText = `~$${savingsMonth.toLocaleString('en-US')}`;
+
+            // Dynamic Diagnosis Insight
+            if (resDiagnosis) {
+                if (hoursWAMonth > hoursQuotesMonth) {
+                    resDiagnosis.innerHTML = `Tu principal fuga de tiempo está en la <strong>atención repetitiva y el procesamiento manual de pedidos</strong> (~${hoursWAMonth} h/mes). Un Sistema Operativo a Medida de EMET automatizará la toma de requerimientos, validación y conciliación, entregándote órdenes listas y organizadas.`;
+                } else {
+                    resDiagnosis.innerHTML = `Tu mayor fuga está en la <strong>elaboración manual de presupuestos</strong> (~${hoursQuotesMonth} h/mes). Un Cotizador Inteligente a Medida de EMET reducirá el cálculo de 20 minutos a menos de 30 segundos por cotización, eliminando errores de cálculo.`;
+                }
+            }
+
+            // WhatsApp dynamic direct link
+            if (btnWA) {
+                const messageText = `Hola Joaquín, hice el diagnóstico en el Simulador de EMET. Según mis números, mi negocio pierde aproximadamente ${totalHoursMonth} horas al mes (unos $${moneyMonth.toLocaleString('en-US')} USD en tareas manuales). Me gustaría agendar la auditoría de 15 minutos para ver cómo detener esta fuga y recuperar ese tiempo.`;
+                btnWA.href = `https://wa.me/584242544045?text=${encodeURIComponent(messageText)}`;
+            }
+        }
+
+        // Initialize calculator listeners
+        const sliderWhatsAppEl = document.getElementById('slider-whatsapp');
+        const sliderQuotesEl = document.getElementById('slider-quotes');
+        const sliderRateEl = document.getElementById('slider-rate');
+
+        if (sliderWhatsAppEl && sliderQuotesEl && sliderRateEl) {
+            sliderWhatsAppEl.addEventListener('input', calculateWaste);
+            sliderQuotesEl.addEventListener('input', calculateWaste);
+            sliderRateEl.addEventListener('input', calculateWaste);
+            calculateWaste();
+        }
+
+        // ==========================================
+        // SCROLL CINEMA SCRUBBING ENGINE (EMET)
+        // ==========================================
+        const totalFrames = 80;
+        const frameImages = [];
+        let framesLoaded = 0;
+        const scrubCanvas = document.getElementById('scrub-canvas');
+        const scrubProgressBar = document.getElementById('scrub-progress-bar');
+        const scrubSection = document.getElementById('experiencia-paz');
+        const statements = [
+            document.getElementById('statement-1'),
+            document.getElementById('statement-2'),
+            document.getElementById('statement-3'),
+            document.getElementById('statement-4')
+        ];
+
+        // Preload all 80 WebP frames
+        for (let i = 1; i <= totalFrames; i++) {
+            const img = new Image();
+            const paddedIndex = String(i).padStart(3, '0');
+            img.src = `frames_mujer/frame_${paddedIndex}.webp`;
+            img.onload = () => {
+                framesLoaded++;
+                if (i === 1) {
+                    renderCanvasFrame(img);
+                }
+            };
+            frameImages.push(img);
+        }
+
+        function renderCanvasFrame(img) {
+            if (!img || !scrubCanvas) return;
+            const ctx = scrubCanvas.getContext('2d');
+            if (!ctx) return;
+            
+            const dpr = window.devicePixelRatio || 1;
+            const w = scrubCanvas.clientWidth || window.innerWidth;
+            const h = scrubCanvas.clientHeight || window.innerHeight;
+            
+            if (scrubCanvas.width !== w * dpr || scrubCanvas.height !== h * dpr) {
+                scrubCanvas.width = w * dpr;
+                scrubCanvas.height = h * dpr;
+            }
+            
+            // Object-cover calculations to fill canvas without distortion
+            const imgW = img.naturalWidth || img.width || 1280;
+            const imgH = img.naturalHeight || img.height || 720;
+            const hRatio = scrubCanvas.width / imgW;
+            const vRatio = scrubCanvas.height / imgH;
+            const ratio = Math.max(hRatio, vRatio);
+            const centerShiftX = (scrubCanvas.width - imgW * ratio) / 2;
+            const centerShiftY = (scrubCanvas.height - imgH * ratio) / 2;
+            
+            ctx.clearRect(0, 0, scrubCanvas.width, scrubCanvas.height);
+            ctx.drawImage(img, 0, 0, imgW, imgH,
+                          centerShiftX, centerShiftY, imgW * ratio, imgH * ratio);
+        }
+
+        let isScrubbingTicking = false;
+
+        function updateScrubOnScroll() {
+            if (!scrubSection) return;
+            
+            const rect = scrubSection.getBoundingClientRect();
+            const scrollDist = scrubSection.offsetHeight - window.innerHeight;
+            const scrolled = -rect.top;
+            
+            // Progress from 0.0 to 1.0 clamped
+            const progress = Math.min(Math.max(scrolled / scrollDist, 0), 1);
+            
+            // Update progress bar
+            if (scrubProgressBar) {
+                scrubProgressBar.style.width = `${progress * 100}%`;
+            }
+            
+            // Map progress to frame index (0 to 79)
+            const frameIndex = Math.min(Math.floor(progress * (totalFrames - 1)), totalFrames - 1);
+            const currentImg = frameImages[frameIndex];
+            if (currentImg && currentImg.complete) {
+                renderCanvasFrame(currentImg);
+            }
+            
+            // Silky-Smooth Phrase State Transition Engine (No harsh cuts, organic cross-fade)
+            let activeIdx = 0;
+            if (progress < 0.26) activeIdx = 0;
+            else if (progress < 0.51) activeIdx = 1;
+            else if (progress < 0.76) activeIdx = 2;
+            else activeIdx = 3;
+            
+            statements.forEach((st, idx) => {
+                if (!st) return;
+                if (idx === activeIdx) {
+                    st.classList.remove('passed', 'upcoming');
+                    st.classList.add('active');
+                } else if (idx < activeIdx) {
+                    st.classList.remove('active', 'upcoming');
+                    st.classList.add('passed');
+                } else {
+                    st.classList.remove('active', 'passed');
+                    st.classList.add('upcoming');
+                }
+            });
+            
+            isScrubbingTicking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!isScrubbingTicking) {
+                window.requestAnimationFrame(updateScrubOnScroll);
+                isScrubbingTicking = true;
+            }
+        }, { passive: true });
+
+        window.addEventListener('resize', () => {
+            if (frameImages[0] && frameImages[0].complete) {
+                updateScrubOnScroll();
+            }
+        });
+
+        // Initial render when first frame is ready
+        setTimeout(() => {
+            if (frameImages[0] && frameImages[0].complete) {
+                renderCanvasFrame(frameImages[0]);
+            }
+        }, 150);
+
+        // Lightweight Executive Scroll-Reveal Engine
+        if ('IntersectionObserver' in window) {
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                root: null,
+                rootMargin: '0px 0px -40px 0px',
+                threshold: 0.08
+            });
+
+            document.querySelectorAll('.reveal').forEach(el => {
+                revealObserver.observe(el);
+            });
+        } else {
+            document.querySelectorAll('.reveal').forEach(el => el.classList.add('revealed'));
+        }
+
+        // ==========================================
+        // MOBILE HAMBURGER MENU ENGINE
+        // ==========================================
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuDrawer = document.getElementById('mobile-menu-drawer');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+        const menuIconClose = document.getElementById('menu-icon-close');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        function toggleMobileMenu() {
+            if (!mobileMenuDrawer) return;
+            const isOpen = !mobileMenuDrawer.classList.contains('hidden');
+            if (isOpen) {
+                mobileMenuDrawer.classList.add('hidden');
+                if (menuIconOpen) menuIconOpen.classList.remove('hidden');
+                if (menuIconClose) menuIconClose.classList.add('hidden');
+            } else {
+                mobileMenuDrawer.classList.remove('hidden');
+                if (menuIconOpen) menuIconOpen.classList.add('hidden');
+                if (menuIconClose) menuIconClose.classList.remove('hidden');
+                lucide.createIcons();
+            }
+        }
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        }
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (mobileMenuDrawer && !mobileMenuDrawer.classList.contains('hidden')) {
+                    mobileMenuDrawer.classList.add('hidden');
+                    if (menuIconOpen) menuIconOpen.classList.remove('hidden');
+                    if (menuIconClose) menuIconClose.classList.add('hidden');
+                }
+            });
+        });
+
+        // Guarantee reset to the very top on reload/load
+        window.addEventListener('beforeunload', () => {
+            window.scrollTo(0, 0);
+        });
+        window.addEventListener('load', () => {
+            if (window.location.hash) {
+                history.replaceState(null, null, window.location.pathname + window.location.search);
+            }
+            window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        });
+    </script>
+</body>
+</html>

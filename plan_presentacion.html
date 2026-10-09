@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Estratégico Maestro - EMET | Procesos en orden, mentes en paz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #090d16;
+            --bg-card: #111827;
+            --bg-card-hover: #1f293d;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --accent-blue: #3b82f6;
+            --accent-cyan: #06b6d4;
+            --accent-emerald: #10b981;
+            --accent-violet: #8b5cf6;
+            --accent-amber: #f59e0b;
+            --border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: rgba(9, 13, 22, 0.85);
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+            border-bottom: 1px solid var(--border-color);
+            z-index: 100;
+        }
+
+        .brand-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+            background: linear-gradient(135deg, #c86d51, #e0a96d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-action {
+            background: #1e293b;
+            color: #f8fafc;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-action:hover {
+            background: #334155;
+            border-color: #60a5fa;
+            transform: translateY(-1px);
+        }
+
+        .btn-print {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            border: none;
+        }
+
+        .btn-print:hover {
+            background: linear-gradient(135deg, #1d4ed8, #6d28d9);
+        }
+
+        .presentation-container {
+            margin-top: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 20px 80px;
+            gap: 40px;
+        }
+
+        .slide {
+            width: 100%;
+            max-width: 1100px;
+            min-height: 620px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #10b981);
+        }
+
+        .slide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 22px;
+        }
+
+        .slide-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent-cyan);
+            background: rgba(6, 182, 212, 0.1);
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(6, 182, 212, 0.2);
+        }
+
+        .slide-title {
+            font-size: 27px;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.2;
+            margin-bottom: 5px;
+        }
+
+        .slide-subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .slide-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .slide-footer {
+            margin-top: 22px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.2s;
+        }
+
+        .card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .card-tag {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .tag-blue { color: var(--accent-blue); }
+        .tag-emerald { color: var(--accent-emerald); }
+        .tag-violet { color: var(--accent-violet); }
+        .tag-amber { color: var(--accent-amber); }
+
+        .card-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .card-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.45;
+            margin-bottom: 14px;
+        }
+
+        .card-meta {
+            padding-top: 12px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.08);
+            font-size: 12px;
+            font-weight: 600;
+            color: #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .timeline {
+            display: flex;
+            gap: 16px;
+            margin-top: 10px;
+        }
+
+        .step-item {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .step-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--accent-blue);
+            margin-bottom: 6px;
+        }
+
+        .step-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .step-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .cover-content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            margin: auto 0;
+        }
+
+        .cover-badge {
+            background: rgba(59, 130, 246, 0.15);
+            color: #93c5fd;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .cover-title {
+            font-size: 46px;
+            font-weight: 800;
+            line-height: 1.15;
+            background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cover-desc {
+            font-size: 17px;
+            color: var(--text-muted);
+            max-width: 680px;
+        }
+
+        .team-pill {
+            display: flex;
+            gap: 24px;
+            margin-top: 14px;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 10px 24px;
+            border-radius: 40px;
+            border: 1px solid var(--border-color);
+            font-size: 13px;
+        }
+
+        .formula-box {
+            display: flex;
+            align-items: stretch;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .formula-segment {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .formula-time {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--accent-cyan);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .formula-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .formula-sub {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* Profile mockup box */
+        .profile-preview {
+            background: #0b1120;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 16px;
+            padding: 22px;
+            font-family: inherit;
+        }
+
+        .profile-row {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 16px;
+        }
+
+        .avatar-placeholder {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            flex-shrink: 0;
+        }
+
+        .bio-text {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #cbd5e1;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .highlight-bar {
+            display: flex;
+            gap: 14px;
+            margin-top: 14px;
+        }
+
+        .highlight-circle {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            font-size: 11px;
+            color: #94a3b8;
+        }
+
+        .highlight-icon {
+            font-size: 18px;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        @media print {
+            body {
+                background-color: #ffffff;
+                color: #0f172a;
+            }
+
+            .top-nav {
+                display: none !important;
+            }
+
+            .presentation-container {
+                margin: 0 !important;
+                padding: 0 !important;
+                gap: 0 !important;
+            }
+
+            .slide {
+                width: 100% !important;
+                max-width: 100% !important;
+                height: 100vh !important;
+                min-height: 100vh !important;
+                border: none !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                page-break-after: always !important;
+                break-after: page !important;
+                background: #0f172a !important;
+                color: #f8fafc !important;
+                padding: 40px 60px !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            @page {
+                size: 297mm 210mm;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Header -->
+    <header class="top-nav">
+        <div class="brand-badge">
+            <span>⚡</span>
+            <span>IA A OTRO NIVEL | PLAN MAESTRO & BRANDING</span>
+        </div>
+        <div class="nav-actions">
+            <button class="btn-action btn-print" onclick="window.print()">
+                <span>🖨️</span> Guardar como PDF / Imprimir
+            </button>
+        </div>
+    </header>
+
+    <div class="presentation-container">
+
+        <!-- SLIDE 1: PORTADA -->
+        <section class="slide">
+            <div class="slide-header">
+                <span class="slide-number">SLIDE 01 / 08</span>
+                <span style="font-size: 12px; color: #64748b;">CONFIDENCIAL & ESTRATÉGICO</span>
+            </div>
+            <div class="slide-body">
+                <div class="cover-content">
+                    <img src="logo_emet.jpg" alt="Logo Oficial EMET" style="width: 140px; height: 140px; border-radius: 20px; box-shadow: 0 12px 30px rgba(0,0,0,0.5); margin-bottom: 10px; border: 1px solid rgba(255,255,255,0.15);">
+                    <div class="cover-badge">Hoja de Ruta Estratégica 2026 - 2027</div>
+                    <h1 class="cover-title">EMET</h1>
+                    <p class="cover-desc" style="font-size: 20px; color: #e2e8f0; font-weight: 600;">
+                        "Procesos en orden, mentes en paz"
+                    </p>
+                    <p class="cover-desc" style="font-size: 14px; margin-top: -6px;">
+                        De la implementación de soluciones de automatización sin código a la consultoría de alto impacto y capacitación corporativa con sentido humano.
+                    </p>
+                    <div class="team-pill">
+                        <div>👤 <strong>Joaquín:</strong> Autoridad Técnica & En Cámara</div>
+                        <div style="color: #475569;">|</div>
+                        <div>🎬 <strong>Dirección:</strong> Grabación, Edición & Conversión</div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>Ecosistema de Automatización & Soluciones Prácticas</span>
+                <span>Fase Inicial a Escala B2B</span>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: IDENTIDAD Y BRANDING (NUEVA DIAPOSITIVA) -->
+        <section class="slide">
+            <div class="slide-header">
+                <div>
+                    <h2 class="slide-title">Identidad Oficial: EMET & Simbología del Isotipo</h2>
+                    <p class="slide-subtitle">La arquitectura de marca aprobada y los fundamentos del diseño</p>
+                </div>
+                <span class="slide-number">SLIDE 02 / 08</span>
+            </div>
+            <div class="slide-body">
+                <div class="grid-3" style="margin-bottom: 18px;">
+                    <div class="card" style="border-color: rgba(212, 163, 89, 0.4);">
+                        <span class="card-tag tag-amber">EL NOMBRE BÍBLICO</span>
+                        <div class="card-title">EMET (אֱמֶת)</div>
+                        <p class="card-desc">
+                            <strong>Significado:</strong> "La verdad demostrada en los hechos". Representa fidelidad a la palabra, integridad de principio a fin y transparencia radical en presupuestos y soluciones operativas.
+                        </p>
+                        <div class="card-meta">
+                            <span>Valor: Honestidad</span>
+                            <span style="color: #d4a359;">Cero humo tecnológico</span>
+                        </div>
+                    </div>
+
+                    <div class="card" style="border-color: var(--accent-blue);">
+                        <span class="card-tag tag-blue">EL ISOTIPO: DOS ESLABONES</span>
+                        <div class="card-title">Integración &amp; Alianza</div>
+                        <p class="card-desc">
+                            <strong>Simbología:</strong> Dos rombos redondeados entrelazados. Uno es el negocio del cliente (tiempo y calor humano); el otro es EMET (solidez técnica). Juntos representan procesos integrados sin fricción.
+                        </p>
+                        <div class="card-meta">
+                            <span>Metáfora: Sincronía</span>
+                            <span style="color: var(--accent-blue);">Equilibrio dinámico</span>
+                        </div>
+                    </div>
+
+                    <div class="card" style="border-color: var(--accent-emerald);">
+                        <span class="card-tag tag-emerald">PALETA CROMÁTICA</span>
+                        <div class="card-title">Oro Arena + Azul Noche</div>
+                        <p class="card-desc">
+                            <strong>Psicología del color:</strong> El <em>Azul Medianoche (#162035)</em> aporta autoridad técnica y seguridad corporativa; el <em>Oro Arena (#C29B53)</em> aporta calor humano, distinción y calma mental.
+                        </p>
+                        <div class="card-meta">
+                            <span>Impacto: Sofisticado</span>
+                            <span style="color: var(--accent-emerald);">100% Legible</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between;">
+                    <div style="font-size: 13px; color: #cbd5e1;">
+                        💡 <strong>Estrategia de Convivencia:</strong> En redes sociales das la cara tú como <strong>Joaquín | Automatización & IA</strong> (cercanía y confianza personal), y respaldas cada propuesta, cotización y contrato formal bajo la marca corporativa <strong>EMET</strong>.
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>Identidad Visual Aprobada · Slogan: "Procesos en orden, mentes en paz"</span>
+                <span>EMET · Soluciones Operativas</span>
+            </div>
+        </section>
+
+        <!-- SLIDE 3: CONFIGURACIÓN EXACTA DE REDES SOCIALES (NUEVA DIAPOSITIVA) -->
+        <section class="slide">
+            <div class="slide-header">
+                <div>
+                    <h2 class="slide-title">Configuración Milimétrica del Perfil de Redes</h2>
+                    <p class="slide-subtitle">La arquitectura exacta para que tu perfil de Instagram y TikTok convierta visitas en dinero</p>
+                </div>
+                <span class="slide-number">SLIDE 03 / 08</span>
+            </div>
+            <div class="slide-body">
+                <div class="grid-2">
+                    <!-- Left: Preview Mockup -->
+                    <div class="profile-preview">
+                        <div class="profile-row">
+                            <div class="avatar-placeholder">👤</div>
+                            <div>
+                                <div style="font-weight: 800; font-size: 16px; color: #fff;">@joaquin.automatiza</div>
+                                <div style="font-size: 13px; font-weight: 700; color: #60a5fa;">Joaquín | Automatización & IA</div>
+                            </div>
+                        </div>
+                        <div class="bio-text">
+                            🛠️ Sin código: creo sistemas de IA que trabajan por ti.<br>
+                            ⏱️ Ahorra +15h/semana en tu negocio o profesión.<br>
+                            🚀 No vendo cursos. Muestro soluciones reales en vivo.<br>
+                            👇 Audita tus procesos gratis en 15 min:<br>
+                            <span style="color: #38bdf8; font-weight: 600; text-decoration: underline;">wa.me/58XXXXXXXX?text=QuieroAuditoria...</span>
+                        </div>
+                        <div class="highlight-bar">
+                            <div class="highlight-circle">
+                                <span class="highlight-icon">🚀</span>
+                                <strong>Casos</strong>
+                            </div>
+                            <div class="highlight-circle">
+                                <span class="highlight-icon">👤</span>
+                                <strong>Quién Soy</strong>
+                            </div>
+                            <div class="highlight-circle">
+                                <span class="highlight-icon">💼</span>
+                                <strong>Servicios</strong>
+                            </div>
+                            <div class="highlight-circle">
+                                <span class="highlight-icon">⭐</span>
+                                <strong>Resultados</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Technical Rules -->
+                    <div style="display: flex; flex-direction: column; gap: 12px; justify-content: center;">
+                        <div class="card" style="padding: 14px;">
+                            <span class="card-tag tag-blue">1. SEO DEL CAMPO "NOMBRE"</span>
+                            <p class="card-desc" style="font-size: 12px; margin-bottom: 0;">
+                                En Instagram/TikTok, el campo nombre es un motor de búsqueda. Al colocar <strong>`Joaquín | Automatización & IA`</strong>, apareces en los resultados cuando alguien busca esas palabras clave.
+                            </p>
+                        </div>
+                        <div class="card-card card" style="padding: 14px;">
+                            <span class="card-tag tag-emerald">2. ENLACE DIRECTO (CERO LINKTREE)</span>
+                            <p class="card-desc" style="font-size: 12px; margin-bottom: 0;">
+                                No pongas un Linktree con 10 opciones que confunden. Un solo enlace a WhatsApp con mensaje automático listo para enviar solicitando el diagnóstico.
+                            </p>
+                        </div>
+                        <div class="card-card card" style="padding: 14px;">
+                            <span class="card-tag tag-violet">3. FOTO DE PERFIL DE CONFIANZA</span>
+                            <p class="card-desc" style="font-size: 12px; margin-bottom: 0;">
+                                Tú de frente, mirando al lente, iluminación clara y fondo con la pantalla de tu computadora mostrando un flujo n8n desenfocado. Cero avatares de IA.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>Optimización para Conversión Inmediata</span>
+                <span>Instagram, TikTok & LinkedIn</span>
+            </div>
+        </section>
+
+        <!-- SLIDE 4: PROPUESTA DE VALOR -->
+        <section class="slide">
+            <div class="slide-header">
+                <div>
+                    <h2 class="slide-title">La Propuesta de Valor Diferencial</h2>
+                    <p class="slide-subtitle">Por qué este modelo destruye a la competencia de "cursos teóricos"</p>
+                </div>
+                <span class="slide-number">SLIDE 04 / 08</span>
+            </div>
+            <div class="slide-body">
+                <div class="grid-3">
+                    <div class="card">
+                        <div>
+                            <span class="card-tag tag-blue">EL PROBLEMA DEL MERCADO</span>
+                            <div class="card-title">Cursos Teóricos & Cero Práctica</div>
+                            <p class="card-desc">
+                                La gente compra cursos de IA llenos de teoría que nunca terminan. Quieren resultados inmediatos, no convertirse en programadores de fin de semana.
+                            </p>
+                        </div>
+                        <div class="card-meta">
+                            <span>Fricción del cliente: Alta</span>
+                            <span style="color: #ef4444;">Retención: &lt;10%</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <span class="card-tag tag-emerald">NUESTRA SOLUCIÓN</span>
+                            <div class="card-title">Soluciones Llave en Mano (DFY)</div>
+                            <p class="card-desc">
+                                Implementamos herramientas funcionales: cotizadores automáticos, bots de WhatsApp y CRMs con herramientas gratuitas o de bajísimo costo.
+                            </p>
+                        </div>
+                        <div class="card-meta">
+                            <span>Valor percibido: Inmediato</span>
+                            <span style="color: var(--accent-emerald);">Ahorro: 15h/semana</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <span class="card-tag tag-violet">LA BAZA SECRETA</span>
+                            <div class="card-title">Autoridad por Resultados</div>
+                            <p class="card-desc">
+                                "Si yo logré crear un CRM para aseguradoras y un bot financiero sin saber código tradicional, imagina lo que podemos montar en tu empresa".
+                            </p>
+                        </div>
+                        <div class="card-meta">
+                            <span>Barrera de entrada: Alta</span>
+                            <span style="color: var(--accent-violet);">Casos reales en vivo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>Pilares: Pragmatismo · Cero Humo · Rentabilidad Inmediata</span>
+                <span>Foco: B2B & Profesionales</span>
+            </div>
+        </section>
+
+        <!-- SLIDE 5: PORTAFOLIO INICIAL -->
+        <section class="slide">
+            <div class="slide-header">
+                <div>
+                    <h2 class="slide-title">Fase 1: Portafolio de Soluciones Iniciales</h2>
+                    <p class="slide-subtitle">Productos paquetizados con soporte incluido para generar tracción y flujo de caja</p>
+                </div>
+                <span class="slide-number">SLIDE 05 / 08</span>
+            </div>
+            <div class="slide-body">
+                <div class="grid-3">
+                    <div class="card">
+                        <div>
+                            <span class="card-tag tag-blue">VENTAS ÁGILES</span>
+                            <div class="card-title">Cotizador Inteligente</div>
+                            <p class="card-desc">
+                                Aplicación web privada estilo <em>Emprintelab</em>. Calcula en USD/VES, anticipos y genera un PDF profesional descargable para WhatsApp en 30 segundos.
+                            </p>
+                        </div>
+                        <div class="card-meta">
+                            <span>Para: Imprentas, talleres, repuestos</span>
+                            <span style="color: var(--accent-blue);">$250 - $450 USD</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <span class="card-tag tag-emerald">OPERACIONES</span>
+                            <div class="card-title">Bot Operativo & Finanzas</div>
+                            <p class="card-desc">
+                                Flujo n8n conectado a WhatsApp/Telegram y Gemini 2.0 Flash. Procesa texto o audios de gastos/ingresos y los ordena en base de datos contable.
+                            </p>
+                        </div>
+                        <div class="card-meta">
+                            <span>Para: Comercios, pymes, servicios</span>
+                            <span style="color: var(--accent-emerald);">$300 - $550 USD</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div>
+                            <span class="card-tag tag-violet">CONTACTO PRO</span>
+                            <div class="card-title">NFC Smart + Landing</div>
+                            <p class="card-desc">
+                                Tarjeta física con chip NFC programado enlazada a una micrositio moderno (como Transbanca u Odontóloga). Puerta de entrada para clientes grandes.
+                            </p>
+                        </div>
+                        <div class="card-meta">
+                            <span>Para: Médicos, abogados, ejecutivos</span>
+                            <span style="color: var(--accent-violet);">$35 - $70 USD</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>Estrategia: Precios de paquete cerrado que incluyen de 3 a 6 meses de servidor para eliminar la resistencia a la mensualidad</span>
+                <span>Ticket Promedio: $350 USD</span>
+            </div>
+        </section>
+
+        <!-- SLIDE 6: ESTRATEGIA DE CONTENIDO -->
+        <section class="slide">
+            <div class="slide-header">
+                <div>
+                    <h2 class="slide-title">Estrategia de Contenido: Casos Reales en Video</h2>
+                    <p class="slide-subtitle">Tú en cámara + Tu novia en dirección y edición. Cero tips genéricos, 100% transformación.</p>
+                </div>
+                <span class="slide-number">SLIDE 06 / 08</span>
+            </div>
+            <div class="slide-body">
+                <div style="margin-bottom: 20px;">
+                    <div style="font-size: 13px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px;">
+                        LA ESTRUCTURA GANADORA DE 50 SEGUNDOS (RETENCIÓN MÁXIMA)
+                    </div>
+                    <div class="formula-box">
+                        <div class="formula-segment">
+                            <div class="formula-time">00 - 04s</div>
+                            <div class="formula-label">Gancho Doloroso</div>
+                            <div class="formula-sub">"Si tardas 5 min en cotizar..."</div>
+                        </div>
+                        <div class="formula-segment">
+                            <div class="formula-time">04 - 15s</div>
+                            <div class="formula-label">El Problema Real</div>
+                            <div class="formula-sub">Libretas, Canva y pérdida de clientes</div>
+                        </div>
+                        <div class="formula-segment" style="border-color: var(--accent-blue);">
+                            <div class="formula-time">15 - 35s</div>
+                            <div class="formula-label">Muestra Pantalla</div>
+                            <div class="formula-sub">El cotizador o el bot en vivo</div>
+                        </div>
+                        <div class="formula-segment">
+                            <div class="formula-time">35 - 45s</div>
+                            <div class="formula-label">Resultado Neto</div>
+                            <div class="formula-sub">Ahorro de 15 horas a la semana</div>
+                        </div>
+                        <div class="formula-segment" style="border-color: var(--accent-emerald);">
+                            <div class="formula-time">45 - 55s</div>
+                            <div class="formula-label">CTA Clave</div>
+                            <div class="formula-sub">"Comenta 'BOT' para auditarte"</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <span class="card-tag tag-blue">EL EMBUDO DE CONVERSIÓN EN REDES</span>
+                        <div class="card-title">De Comentario a Llamada de 15 Min</div>
+                        <p class="card-desc">
+                            El cliente comenta la palabra clave en el video &rarr; Le escribes al DM de inmediato &rarr; Le haces 2 preguntas de diagnóstico &rarr; Lo invitas a un Zoom de 15 min donde le muestras el software y le pasas presupuesto.
+                        </p>
+                    </div>
+                    <div class="card">
+                        <span class="card-tag tag-violet">MERCADO GEOGRÁFICO INTELIGENTE</span>
+                        <div class="card-title">Venezuela (Caja) + Exterior (Recurrente)</div>
+                        <p class="card-desc">
+                            En Venezuela cierras proyectos con paquete cerrado. En redes te verán de Colombia, Chile, México y EE.UU., donde sí pagan una mensualidad de \$30 - \$50/mes por soporte sin dudarlo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>Ritmo de publicación: 3 a 4 videos semanales</span>
+                <span>Plataformas: TikTok, Instagram Reels & YouTube Shorts</span>
+            </div>
+        </section>
+
+        <!-- SLIDE 7: FASE 2 & FASE 3 (ASESORÍAS Y B2B CORPORATIVO) -->
+        <section class="slide">
+            <div class="slide-header">
+                <div>
+                    <h2 class="slide-title">Fases 2 y 3: Asesorías Guiadas & Expansión B2B</h2>
+                    <p class="slide-subtitle">De talleres de implementación a contratos institucionales con empresas y colegios</p>
+                </div>
+                <span class="slide-number">SLIDE 07 / 08</span>
+            </div>
+            <div class="slide-body">
+                <div class="grid-2">
+                    <div class="card" style="padding: 24px;">
+                        <span class="card-tag tag-emerald">FASE 2: DONE-WITH-YOU</span>
+                        <div class="card-title" style="font-size: 18px;">Asesorías 1 a 1 & Workshops</div>
+                        <p class="card-desc" style="font-size: 13px; margin-bottom: 12px;">
+                            • <strong>Sillón de Implementación (1 a 1):</strong> Sesión de 90 min por Zoom. El cliente comparte pantalla y sale con su flujo de IA montado (\$100 - \$180 USD).<br>
+                            • <strong>Workshops por Nicho:</strong> Grupos reducidos de 6 a 8 profesionales del mismo sector a \$50 USD por asiento (\$300 - \$400 USD en una tarde).
+                        </p>
+                        <div class="card-meta">
+                            <span>Margen: 100% Neto</span>
+                            <span style="color: var(--accent-emerald);">Cero Mantenimiento</span>
+                        </div>
+                    </div>
+
+                    <div class="card" style="padding: 24px;">
+                        <span class="card-tag tag-amber">FASE 3: B2B CORPORATIVO & COLEGIOS</span>
+                        <div class="card-title" style="font-size: 18px;">Capacitación a Instituciones</div>
+                        <p class="card-desc" style="font-size: 13px; margin-bottom: 12px;">
+                            • <strong>Empresas In-Company:</strong> Capacitación para equipos de ventas y operaciones. Manual de protocolos y flujos automáticos (\$600 - \$1,500 USD).<br>
+                            • <strong>Colegios Privados:</strong> Vendido al Rector/Dueño. Capacitación a docentes en NotebookLM y evaluaciones dinámicas (\$400 - \$800 USD).
+                        </p>
+                        <div class="card-meta">
+                            <span>Venta al Director General</span>
+                            <span style="color: var(--accent-amber);">Ticket Alto</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>Evolución: De ejecutar el trabajo a liderar la formación estratégica</span>
+                <span>Escala Exponencial</span>
+            </div>
+        </section>
+
+        <!-- SLIDE 8: ROADMAP 30 DÍAS -->
+        <section class="slide">
+            <div class="slide-header">
+                <div>
+                    <h2 class="slide-title">Roadmap de Ejecución: Primeros 30 Días</h2>
+                    <p class="slide-subtitle">El plan de acción táctico para empezar esta misma semana</p>
+                </div>
+                <span class="slide-number">SLIDE 08 / 08</span>
+            </div>
+            <div class="slide-body">
+                <div class="timeline">
+                    <div class="step-item">
+                        <div class="step-num">SEM 1</div>
+                        <div class="step-title">Set & Primer Rodaje</div>
+                        <p class="step-desc">
+                            Ajustar biografías de IG/TikTok. Grabar los primeros 3 videos mostrando en pantalla: 1) Cotizador Emprintelab, 2) Bot Ahinoam y 3) Historia "No soy programador".
+                        </p>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-num">SEM 2</div>
+                        <div class="step-title">Publicación & Prospección</div>
+                        <p class="step-desc">
+                            Lanzar 4 videos en la semana. Contactar a 5 negocios conocidos para ofrecerles auditoría de 20 min gratis a cambio de video-testimonio de impacto.
+                        </p>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-num">SEM 3</div>
+                        <div class="step-title">Primer Cierre & Caso</div>
+                        <p class="step-desc">
+                            Realizar llamadas de diagnóstico por Zoom. Cerrar la primera implementación de pago (\$250 - \$350) y documentar todo el proceso para redes.
+                        </p>
+                    </div>
+
+                    <div class="step-item">
+                        <div class="step-num">SEM 4</div>
+                        <div class="step-title">Lanzar Asesorías DWY</div>
+                        <p class="step-desc">
+                            Abrir los primeros 3 cupos para "Sesión de Desbloqueo 1 a 1" (\$100). Primeros acercamientos con directores de academias privadas para talleres grupales.
+                        </p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 24px; background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 12px; padding: 16px; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <div style="font-weight: 700; color: #fff; font-size: 14px;">🎯 Meta Financiera del Mes 1</div>
+                        <div style="color: var(--text-muted); font-size: 12px;">2 Proyectos de Implementación (\$600) + 2 Asesorías 1 a 1 (\$200)</div>
+                    </div>
+                    <div style="font-family: 'JetBrains Mono', monospace; font-size: 20px; font-weight: 800; color: var(--accent-emerald);">
+                        $800 USD Objetivo
+                    </div>
+                </div>
+            </div>
+            <div class="slide-footer">
+                <span>IA A OTRO NIVEL · Ejecución Disciplinada</span>
+                <span>¡Manos a la obra!</span>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
