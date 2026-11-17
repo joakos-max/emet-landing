@@ -291,7 +291,7 @@
     </header>
 
     <!-- Hero Section: Full-Bleed Video Background with Foreground Editorial Content -->
-    <section class="relative min-h-[90vh] lg:min-h-screen flex items-center overflow-hidden bg-canvas">
+    <section class="relative min-h-[calc(100vh-4.5rem)] flex items-center overflow-hidden bg-canvas">
         
         <!-- Full-Bleed Video Background Container -->
         <div class="absolute inset-0 w-full h-full overflow-hidden">
@@ -304,20 +304,20 @@
             <!-- Directional Editorial Gradient Scrim: Crisp contrast on the left for text, completely clear on the center/right for the character -->
             <div class="absolute inset-0 bg-gradient-to-r from-canvas/95 via-canvas/85 via-45% to-canvas/10 pointer-events-none"></div>
             <!-- Bottom Seamless Fade to Manifesto Section -->
-            <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-canvas to-transparent pointer-events-none"></div>
+            <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-canvas to-transparent pointer-events-none"></div>
             <!-- Top Subtle Header Soft Vignette -->
-            <div class="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-canvas/80 to-transparent pointer-events-none"></div>
+            <div class="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-canvas/80 to-transparent pointer-events-none"></div>
         </div>
 
         <!-- Foreground Content: Slogan, Headline & Action in Front of Video -->
-        <div class="relative z-10 max-w-6xl mx-auto px-6 py-20 lg:py-28 w-full">
-            <div class="max-w-2xl space-y-7 text-left">
+        <div class="relative z-10 max-w-6xl mx-auto px-6 py-8 sm:py-10 lg:py-12 w-full">
+            <div class="max-w-2xl space-y-5 text-left">
                 
 
                 <!-- Main Headline -->
-                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-ink tracking-tight leading-[1.08]">
+                <h1 class="text-3xl sm:text-5xl lg:text-[3.4rem] font-extrabold text-ink tracking-tight leading-[1.08]">
                     Tu negocio fue creado para darte vida.
-                    <span class="font-serif italic font-normal text-goldDark block mt-2.5">No para robarte la paz mental.</span>
+                    <span class="font-serif italic font-normal text-goldDark block mt-1.5">No para robarte la paz mental.</span>
                 </h1>
 
                 <!-- Subheadline / Value Proposition -->
@@ -326,24 +326,24 @@
                 </p>
 
                 <!-- Action CTAs -->
-                <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
+                <div class="pt-1 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
                     <a href="https://wa.me/584242544045?text=Hola%20Joaquin,%20quiero%20agendar%20la%20Auditoria%20Operativa%20de%2015%20minutos%20para%20EMET." 
                        target="_blank"
-                       class="px-8 py-4 rounded-xl bg-ink text-canvas hover:bg-goldDark font-bold text-sm transition-all duration-300 shadow-xl flex items-center justify-center gap-3 group">
+                       class="px-7 py-3.5 rounded-xl bg-ink text-canvas hover:bg-goldDark font-bold text-sm transition-all duration-300 shadow-xl flex items-center justify-center gap-3 group">
                         <span>Agendar Auditoría de Fugas (15 min)</span>
                         <i data-lucide="arrow-right" class="w-4 h-4 text-gold group-hover:translate-x-1 transition-transform"></i>
                     </a>
 
                     <a href="#simulador" 
-                       class="px-6 py-4 rounded-xl backdrop-blur-md bg-white/90 border border-line hover:border-lineStrong text-ink font-semibold text-sm transition-all flex items-center justify-center gap-2 shadow-sm">
+                       class="px-6 py-3.5 rounded-xl backdrop-blur-md bg-white/90 border border-line hover:border-lineStrong text-ink font-semibold text-sm transition-all flex items-center justify-center gap-2 shadow-sm">
                         <i data-lucide="calculator" class="w-4 h-4 text-goldDark"></i>
                         <span>Calcular fugas de tiempo</span>
                     </a>
                 </div>
 
                 <!-- The Two Links Explanation Badge -->
-                <div class="pt-4 border-t border-lineStrong/50 flex items-center gap-4 text-xs text-inkMuted max-w-xl backdrop-blur-sm bg-canvas/40 p-3.5 rounded-2xl border border-line">
-                    <img src="logo_emet_transparente.png" alt="Isotipo EMET" class="h-9 w-auto object-contain shrink-0">
+                <div class="flex items-center gap-4 text-xs text-inkMuted max-w-xl backdrop-blur-sm bg-canvas/55 p-3 rounded-2xl border border-line">
+                    <img src="logo_emet_transparente.png" alt="Isotipo EMET" class="h-8 w-auto object-contain shrink-0">
                     <p class="leading-relaxed">
                         <strong class="text-ink font-semibold">El Isotipo de los Dos Eslabones:</strong> Tu calor humano unido a la solidez de nuestros sistemas. La tecnología en silencio; tu mente en paz.
                     </p>
