@@ -4,8 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EMET · Procesos en orden, mentes en paz</title>
-    <meta name="description" content="Sistemas, catálogos web y automatizaciones que devuelven la serenidad a los dueños de negocio. Tecnología con sentido humano y honestidad radical.">
+    <meta name="description" content="Webs interactivas que venden, bots de WhatsApp con IA y sistemas a medida que devuelven la serenidad a los dueños de negocio. Tecnología con sentido humano y honestidad radical.">
     
+    <!-- Favicon & App Icons -->
+    <link rel="icon" type="image/png" href="logo_emet_transparente.png">
+    <link rel="apple-touch-icon" href="logo_emet_transparente.png">
+
+    <!-- Open Graph / Social Media Cards -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="EMET · Procesos en orden, mentes en paz">
+    <meta property="og:description" content="Webs interactivas que venden, bots de WhatsApp con IA y CRMs a medida para que recuperes tu tiempo.">
+    <meta property="og:image" content="emet_video_poster.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="EMET · Procesos en orden, mentes en paz">
+    <meta name="twitter:description" content="Webs interactivas, bots de WhatsApp con IA y sistemas a medida sin humo digital.">
+    <meta name="twitter:image" content="emet_video_poster.jpg">
+
     <!-- Always start at the very top on reload/load -->
     <script>
         if ('scrollRestoration' in history) {
@@ -19,35 +33,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                        serif: ['"Instrument Serif"', 'serif'],
-                        mono: ['"JetBrains Mono"', 'monospace'],
-                    },
-                    colors: {
-                        canvas: '#FAF7F2',       /* Warm Sandstone Linen */
-                        canvasSubtle: '#F3EDE2', /* Soft Oatmeal */
-                        ink: '#121824',          /* Midnight Ink */
-                        inkMuted: '#576275',     /* Soft Charcoal */
-                        gold: '#C29B53',         /* Official EMET Gold */
-                        goldDark: '#9E7A34',     /* Deep Antique Gold */
-                        goldLight: '#EBD8B2',    /* Whispering Gold */
-                        line: 'rgba(18, 24, 36, 0.08)',
-                        lineStrong: 'rgba(18, 24, 36, 0.16)',
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- Compiled Production Tailwind CSS (Zero console warnings) -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Lucide Icons (Pinned production version) -->
+    <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
     <style>
         body {
             background-color: #FAF7F2;
@@ -219,7 +208,7 @@
             <!-- Quiet Action Button & Mobile Hamburger Toggle -->
             <div class="flex items-center gap-3">
                 <a href="https://wa.me/584242544045?text=Hola%20Joaquin,%20estoy%20en%20la%20web%20de%20EMET%20y%20quiero%20conversar%20sobre%20los%20procesos%20de%20mi%20negocio." 
-                   target="_blank"
+                   target="_blank" rel="noopener noreferrer"
                    class="hidden sm:flex px-4 sm:px-5 py-2.5 rounded-xl bg-ink text-canvas hover:bg-goldDark font-semibold text-xs transition-all duration-200 items-center gap-2 shadow-sm">
                     <i data-lucide="coffee" class="w-3.5 h-3.5 text-gold"></i>
                     <span>Conversar 15 min</span>
@@ -279,7 +268,7 @@
                 <!-- Mobile Action CTA -->
                 <div class="pt-4 border-t border-line space-y-2">
                     <a href="https://wa.me/584242544045?text=Hola%20Joaquin,%20estoy%20en%20la%20web%20de%20EMET%20y%20quiero%20conversar%20sobre%20los%20procesos%20de%20mi%20negocio." 
-                       target="_blank"
+                       target="_blank" rel="noopener noreferrer"
                        class="w-full py-3.5 px-5 rounded-xl bg-ink text-canvas hover:bg-goldDark font-bold text-xs transition-all duration-200 flex items-center justify-center gap-2 shadow-lg">
                         <i data-lucide="coffee" class="w-4 h-4 text-gold"></i>
                         <span>Conversar 15 min en WhatsApp</span>
@@ -328,7 +317,7 @@
                 <!-- Action CTAs -->
                 <div class="pt-1 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
                     <a href="https://wa.me/584242544045?text=Hola%20Joaqu%C3%ADn,%20quiero%20agendar%20una%20reuni%C3%B3n%20de%2015%20minutos%20para%20mi%20negocio%20con%20EMET." 
-                       target="_blank"
+                       target="_blank" rel="noopener noreferrer"
                        class="px-7 py-3.5 rounded-xl bg-ink text-canvas hover:bg-goldDark font-bold text-sm transition-all duration-300 shadow-xl flex items-center justify-center gap-3 group">
                         <span>Agendar reunión de 15 min</span>
                         <i data-lucide="arrow-right" class="w-4 h-4 text-gold group-hover:translate-x-1 transition-transform"></i>
@@ -1032,14 +1021,14 @@
                         <div class="space-y-2.5 pt-2 relative z-10">
                             <a id="btn-calc-whatsapp" 
                                href="#" 
-                               target="_blank" 
+                               target="_blank" rel="noopener noreferrer" 
                                class="w-full py-4 px-5 rounded-xl bg-gold hover:bg-goldDark text-ink font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all duration-200 shadow-xl hover:shadow-gold/20 active:scale-[0.99] text-center group">
                                 <i data-lucide="message-circle" class="w-4 h-4 shrink-0"></i>
                                 <span>Recuperar estas horas con EMET</span>
                                 <i data-lucide="arrow-right" class="w-4 h-4 shrink-0 group-hover:translate-x-1 transition-transform"></i>
                             </a>
                             <p class="text-[10px] text-center text-gray-400 font-mono">
-                                Conversación de 15 minutos con Joaquín Sumalla • Cero compromiso
+                                Conversación de 15 minutos con Joaquín Sumalla • Cero compromiso · Estimación ilustrativa referencial
                             </p>
                         </div>
                     </div>
@@ -1548,7 +1537,7 @@
 
                 <div class="pt-2">
                     <a href="https://wa.me/584242544045?text=Hola%20Joaqu%C3%ADn,%20quiero%20agendar%20mi%20reuni%C3%B3n%20gratuita%20de%2015%20minutos%20para%20mi%20negocio." 
-                       target="_blank"
+                       target="_blank" rel="noopener noreferrer"
                        class="inline-flex px-8 py-4 rounded-xl bg-ink text-canvas hover:bg-goldDark font-bold text-sm transition-all duration-300 shadow-xl items-center gap-3 group">
                         <i data-lucide="calendar" class="w-4 h-4 text-gold"></i>
                         <span>Agendar reunión gratuita en WhatsApp</span>
@@ -1576,21 +1565,68 @@
 
     <!-- Footer -->
     <footer class="border-t border-line bg-canvas py-12 text-inkMuted text-xs">
-        <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
             <div class="flex items-center gap-3">
                 <img src="logo_emet_transparente.png" alt="Logo EMET" class="h-7 w-auto object-contain">
                 <span class="text-lineStrong">|</span>
                 <span>Procesos en orden, mentes en paz</span>
             </div>
-            <div>
+            <div class="flex flex-wrap items-center justify-center gap-4">
+                <button type="button" onclick="openLegalModal('aviso')" class="hover:text-ink underline underline-offset-4 transition-colors">
+                    Aviso Legal y Términos
+                </button>
+                <span class="text-lineStrong">·</span>
+                <button type="button" onclick="openLegalModal('privacidad')" class="hover:text-ink underline underline-offset-4 transition-colors">
+                    Política de Privacidad
+                </button>
+                <span class="text-lineStrong hidden sm:inline">|</span>
                 <span>© 2026 EMET Soluciones Operativas. Caracas · Remoto Global.</span>
             </div>
         </div>
     </footer>
 
+    <!-- Legal & Privacy Modal -->
+    <div id="legal-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-ink/70 backdrop-blur-sm p-4" role="dialog" aria-modal="true" aria-labelledby="legal-modal-title">
+        <div class="bg-canvas border border-lineStrong rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+            <div class="flex items-center justify-between px-6 py-4 border-b border-line bg-white">
+                <h3 id="legal-modal-title" class="text-base font-bold text-ink">Aviso Legal, Términos y Privacidad</h3>
+                <button type="button" onclick="closeLegalModal()" aria-label="Cerrar ventana legal" class="p-1.5 rounded-lg hover:bg-canvasSubtle text-inkMuted hover:text-ink transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div id="legal-modal-body" class="p-6 overflow-y-auto space-y-5 text-xs text-inkMuted leading-relaxed">
+                <div class="space-y-1.5">
+                    <h4 class="font-bold text-ink text-sm">1. Titularidad del Sitio</h4>
+                    <p>Este sitio web pertenece a <strong>EMET Soluciones Operativas</strong>, liderado por Joaquín Sumalla (Caracas, Venezuela · Atención Remota Global). Correo y contacto directo disponibles a través de los canales oficiales enlazados en esta página.</p>
+                </div>
+                <div class="space-y-1.5">
+                    <h4 class="font-bold text-ink text-sm">2. Política de Privacidad y Cero Rastreo</h4>
+                    <p>Esta página informativa <strong>no utiliza cookies de rastreo publicitario</strong> ni recopila o almacena datos personales en servidores propios. El Simulador de Fugas Operativas procesa sus cálculos 100% en el navegador local de su dispositivo. Si decide contactarnos voluntariamente por WhatsApp, la comunicación se rige por las políticas de privacidad de WhatsApp LLC / Meta Platforms y se emplea exclusivamente para atender su consulta comercial.</p>
+                </div>
+                <div class="space-y-1.5">
+                    <h4 class="font-bold text-ink text-sm">3. Descargo de Responsabilidad (Simulador y Casos)</h4>
+                    <p>Los cálculos del Simulador de Fugas y los ahorros porcentuales u horarios mostrados son <strong>estimaciones ilustrativas y referenciales</strong> basadas en los valores introducidos por el visitante; no constituyen garantía contractual de resultados financieros. Cada proyecto se rige por el alcance técnico, presupuesto y condiciones acordadas en su propuesta formal individual.</p>
+                </div>
+                <div class="space-y-1.5">
+                    <h4 class="font-bold text-ink text-sm">4. Propiedad Intelectual y Marcas de Terceros</h4>
+                    <p>El diseño, textos, logotipos y arquitecturas de EMET son propiedad intelectual de sus titulares. Las marcas comerciales citadas en este sitio (tales como WhatsApp, Meta, Google Calendar, Zoom, Pago Móvil, Zelle, Binance, SUDEASEG, entre otras) pertenecen a sus respectivos propietarios y se mencionan únicamente con fines descriptivos de compatibilidad o integración operativa, sin que ello implique patrocinio ni afiliación oficial.</p>
+                </div>
+                <div class="space-y-1.5">
+                    <h4 class="font-bold text-ink text-sm">5. Condiciones de Servicio y Mensualidades</h4>
+                    <p>Las webs interactivas, catálogos, cotizadores y CRMs a medida se contratan bajo modalidad de desarrollo llave en mano (pago único por construcción, sin licencias por usuario). Los sistemas de Bots de WhatsApp con IA requieren, posterior a su instalación, un plan de mantenimiento y operación en la nube ($30 a $50 USD/mes según volumen), sujeto a disponibilidad técnica y políticas de uso de WhatsApp Cloud API.</p>
+                </div>
+            </div>
+            <div class="px-6 py-3.5 border-t border-line bg-white flex justify-end">
+                <button type="button" onclick="closeLegalModal()" class="px-5 py-2 rounded-xl bg-ink text-canvas hover:bg-goldDark font-semibold text-xs transition-colors">
+                    Entendido
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Permanent Floating WhatsApp Button (Icon Only, Clean & Minimal) -->
     <a href="https://wa.me/584242544045?text=Hola%20Joaquin,%20estoy%20viendo%20la%20web%20de%20EMET%20y%20tengo%20una%20consulta%20sobre%20los%20procesos%20de%20mi%20negocio."
-       target="_blank"
+       target="_blank" rel="noopener noreferrer"
        aria-label="Contactar a Joaquín Sumalla por WhatsApp"
        class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 border-2 border-white/20">
         <svg class="w-7 h-7 fill-white" viewBox="0 0 24 24" aria-hidden="true">
@@ -1877,6 +1913,35 @@
                 }
             });
         });
+
+        // ==========================================
+        // LEGAL & PRIVACY MODAL
+        // ==========================================
+        const legalModal = document.getElementById('legal-modal');
+        function openLegalModal(tab) {
+            if (!legalModal) return;
+            legalModal.classList.remove('hidden');
+            legalModal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+            const body = document.getElementById('legal-modal-body');
+            if (body) body.scrollTop = tab === 'privacidad' ? 80 : 0;
+        }
+        function closeLegalModal() {
+            if (!legalModal) return;
+            legalModal.classList.add('hidden');
+            legalModal.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+        if (legalModal) {
+            legalModal.addEventListener('click', (e) => {
+                if (e.target === legalModal) closeLegalModal();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !legalModal.classList.contains('hidden')) {
+                    closeLegalModal();
+                }
+            });
+        }
 
         // Guarantee reset to the very top on reload/load
         window.addEventListener('beforeunload', () => {
